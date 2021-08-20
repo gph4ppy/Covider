@@ -1,0 +1,498 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1CEC381B26CFA066000A3617 /* CoviderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC381A26CFA066000A3617 /* CoviderApp.swift */; };
+		1CEC381D26CFA066000A3617 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC381C26CFA066000A3617 /* ContentView.swift */; };
+		1CEC381F26CFA067000A3617 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CEC381E26CFA067000A3617 /* Assets.xcassets */; };
+		1CEC382226CFA067000A3617 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CEC382126CFA067000A3617 /* Preview Assets.xcassets */; };
+		1CEC382426CFA067000A3617 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC382326CFA067000A3617 /* Persistence.swift */; };
+		1CEC382726CFA067000A3617 /* Covider.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC382526CFA067000A3617 /* Covider.xcdatamodeld */; };
+		1CEC383026CFA08B000A3617 /* String+SubstringIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC382F26CFA08B000A3617 /* String+SubstringIn.swift */; };
+		1CEC383326CFA0D8000A3617 /* WelcomeScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC383226CFA0D8000A3617 /* WelcomeScreenModel.swift */; };
+		1CEC383626CFA0F1000A3617 /* FormStyleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC383526CFA0F1000A3617 /* FormStyleModifier.swift */; };
+		1CEC383826CFA0FD000A3617 /* MenuButtonStyleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC383726CFA0FD000A3617 /* MenuButtonStyleModifier.swift */; };
+		1CEC383B26CFA123000A3617 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CEC383A26CFA123000A3617 /* Launch Screen.storyboard */; };
+		1CEC384026CFA243000A3617 /* Duty+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC383E26CFA243000A3617 /* Duty+CoreDataClass.swift */; };
+		1CEC384126CFA243000A3617 /* Duty+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC383F26CFA243000A3617 /* Duty+CoreDataProperties.swift */; };
+		1CEC384426CFA26E000A3617 /* DutyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC384326CFA26E000A3617 /* DutyViewModel.swift */; };
+		1CEC384926CFA29B000A3617 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC384826CFA29B000A3617 /* HomeView.swift */; };
+		1CEC384B26CFA2AB000A3617 /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC384A26CFA2AB000A3617 /* SessionView.swift */; };
+		1CEC384D26CFA2BB000A3617 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC384C26CFA2BB000A3617 /* WelcomeView.swift */; };
+		1CEC384F26CFA2C8000A3617 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC384E26CFA2C8000A3617 /* CarouselView.swift */; };
+		1CEC385126CFA2D8000A3617 /* DutyCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC385026CFA2D8000A3617 /* DutyCard.swift */; };
+		1CEC385326CFA2E5000A3617 /* DutySetupAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC385226CFA2E5000A3617 /* DutySetupAlert.swift */; };
+		1CEC385526CFA2ED000A3617 /* StopWatchUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC385426CFA2ED000A3617 /* StopWatchUnitView.swift */; };
+		1CEC385726CFA2F6000A3617 /* StopWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC385626CFA2F6000A3617 /* StopWatchView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1CEC381726CFA066000A3617 /* Covider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Covider.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1CEC381A26CFA066000A3617 /* CoviderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoviderApp.swift; sourceTree = "<group>"; };
+		1CEC381C26CFA066000A3617 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1CEC381E26CFA067000A3617 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1CEC382126CFA067000A3617 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1CEC382326CFA067000A3617 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		1CEC382626CFA067000A3617 /* Covider.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Covider.xcdatamodel; sourceTree = "<group>"; };
+		1CEC382826CFA067000A3617 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1CEC382F26CFA08B000A3617 /* String+SubstringIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+SubstringIn.swift"; sourceTree = "<group>"; };
+		1CEC383226CFA0D8000A3617 /* WelcomeScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenModel.swift; sourceTree = "<group>"; };
+		1CEC383526CFA0F1000A3617 /* FormStyleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormStyleModifier.swift; sourceTree = "<group>"; };
+		1CEC383726CFA0FD000A3617 /* MenuButtonStyleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtonStyleModifier.swift; sourceTree = "<group>"; };
+		1CEC383A26CFA123000A3617 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		1CEC383E26CFA243000A3617 /* Duty+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Duty+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1CEC383F26CFA243000A3617 /* Duty+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Duty+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1CEC384326CFA26E000A3617 /* DutyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutyViewModel.swift; sourceTree = "<group>"; };
+		1CEC384826CFA29B000A3617 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		1CEC384A26CFA2AB000A3617 /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
+		1CEC384C26CFA2BB000A3617 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		1CEC384E26CFA2C8000A3617 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
+		1CEC385026CFA2D8000A3617 /* DutyCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutyCard.swift; sourceTree = "<group>"; };
+		1CEC385226CFA2E5000A3617 /* DutySetupAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutySetupAlert.swift; sourceTree = "<group>"; };
+		1CEC385426CFA2ED000A3617 /* StopWatchUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchUnitView.swift; sourceTree = "<group>"; };
+		1CEC385626CFA2F6000A3617 /* StopWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1CEC381426CFA066000A3617 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1CEC380E26CFA066000A3617 = {
+			isa = PBXGroup;
+			children = (
+				1CEC381926CFA066000A3617 /* Covider */,
+				1CEC381826CFA066000A3617 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1CEC381826CFA066000A3617 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1CEC381726CFA066000A3617 /* Covider.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1CEC381926CFA066000A3617 /* Covider */ = {
+			isa = PBXGroup;
+			children = (
+				1CEC384526CFA27E000A3617 /* Views */,
+				1CEC384226CFA262000A3617 /* ViewModels */,
+				1CEC383C26CFA1BB000A3617 /* Shared */,
+				1CEC383926CFA107000A3617 /* Resources */,
+				1CEC383426CFA0EA000A3617 /* Modifiers */,
+				1CEC383126CFA0C8000A3617 /* Models */,
+				1CEC382E26CFA07C000A3617 /* Extensions */,
+				1CEC381C26CFA066000A3617 /* ContentView.swift */,
+				1CEC382826CFA067000A3617 /* Info.plist */,
+				1CEC382026CFA067000A3617 /* Preview Content */,
+			);
+			path = Covider;
+			sourceTree = "<group>";
+		};
+		1CEC382026CFA067000A3617 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1CEC382126CFA067000A3617 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1CEC382E26CFA07C000A3617 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1CEC382F26CFA08B000A3617 /* String+SubstringIn.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1CEC383126CFA0C8000A3617 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1CEC383226CFA0D8000A3617 /* WelcomeScreenModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1CEC383426CFA0EA000A3617 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				1CEC383526CFA0F1000A3617 /* FormStyleModifier.swift */,
+				1CEC383726CFA0FD000A3617 /* MenuButtonStyleModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		1CEC383926CFA107000A3617 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1CEC381A26CFA066000A3617 /* CoviderApp.swift */,
+				1CEC381E26CFA067000A3617 /* Assets.xcassets */,
+				1CEC383A26CFA123000A3617 /* Launch Screen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1CEC383C26CFA1BB000A3617 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				1CEC383D26CFA1CA000A3617 /* Core Data Subclasses */,
+				1CEC382326CFA067000A3617 /* Persistence.swift */,
+				1CEC382526CFA067000A3617 /* Covider.xcdatamodeld */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		1CEC383D26CFA1CA000A3617 /* Core Data Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				1CEC383E26CFA243000A3617 /* Duty+CoreDataClass.swift */,
+				1CEC383F26CFA243000A3617 /* Duty+CoreDataProperties.swift */,
+			);
+			path = "Core Data Subclasses";
+			sourceTree = "<group>";
+		};
+		1CEC384226CFA262000A3617 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1CEC384326CFA26E000A3617 /* DutyViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1CEC384526CFA27E000A3617 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1CEC384726CFA290000A3617 /* Tabs */,
+				1CEC384626CFA287000A3617 /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1CEC384626CFA287000A3617 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1CEC384E26CFA2C8000A3617 /* CarouselView.swift */,
+				1CEC385026CFA2D8000A3617 /* DutyCard.swift */,
+				1CEC385226CFA2E5000A3617 /* DutySetupAlert.swift */,
+				1CEC385426CFA2ED000A3617 /* StopWatchUnitView.swift */,
+				1CEC385626CFA2F6000A3617 /* StopWatchView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		1CEC384726CFA290000A3617 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				1CEC384826CFA29B000A3617 /* HomeView.swift */,
+				1CEC384A26CFA2AB000A3617 /* SessionView.swift */,
+				1CEC384C26CFA2BB000A3617 /* WelcomeView.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1CEC381626CFA066000A3617 /* Covider */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1CEC382B26CFA067000A3617 /* Build configuration list for PBXNativeTarget "Covider" */;
+			buildPhases = (
+				1CEC381326CFA066000A3617 /* Sources */,
+				1CEC381426CFA066000A3617 /* Frameworks */,
+				1CEC381526CFA066000A3617 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Covider;
+			productName = Covider;
+			productReference = 1CEC381726CFA066000A3617 /* Covider.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1CEC380F26CFA066000A3617 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					1CEC381626CFA066000A3617 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+				};
+			};
+			buildConfigurationList = 1CEC381226CFA066000A3617 /* Build configuration list for PBXProject "Covider" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1CEC380E26CFA066000A3617;
+			productRefGroup = 1CEC381826CFA066000A3617 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1CEC381626CFA066000A3617 /* Covider */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1CEC381526CFA066000A3617 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CEC383B26CFA123000A3617 /* Launch Screen.storyboard in Resources */,
+				1CEC382226CFA067000A3617 /* Preview Assets.xcassets in Resources */,
+				1CEC381F26CFA067000A3617 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1CEC381326CFA066000A3617 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CEC382726CFA067000A3617 /* Covider.xcdatamodeld in Sources */,
+				1CEC383826CFA0FD000A3617 /* MenuButtonStyleModifier.swift in Sources */,
+				1CEC382426CFA067000A3617 /* Persistence.swift in Sources */,
+				1CEC381D26CFA066000A3617 /* ContentView.swift in Sources */,
+				1CEC381B26CFA066000A3617 /* CoviderApp.swift in Sources */,
+				1CEC383326CFA0D8000A3617 /* WelcomeScreenModel.swift in Sources */,
+				1CEC384B26CFA2AB000A3617 /* SessionView.swift in Sources */,
+				1CEC385726CFA2F6000A3617 /* StopWatchView.swift in Sources */,
+				1CEC384426CFA26E000A3617 /* DutyViewModel.swift in Sources */,
+				1CEC383026CFA08B000A3617 /* String+SubstringIn.swift in Sources */,
+				1CEC385126CFA2D8000A3617 /* DutyCard.swift in Sources */,
+				1CEC384126CFA243000A3617 /* Duty+CoreDataProperties.swift in Sources */,
+				1CEC384F26CFA2C8000A3617 /* CarouselView.swift in Sources */,
+				1CEC385326CFA2E5000A3617 /* DutySetupAlert.swift in Sources */,
+				1CEC384926CFA29B000A3617 /* HomeView.swift in Sources */,
+				1CEC385526CFA2ED000A3617 /* StopWatchUnitView.swift in Sources */,
+				1CEC384026CFA243000A3617 /* Duty+CoreDataClass.swift in Sources */,
+				1CEC383626CFA0F1000A3617 /* FormStyleModifier.swift in Sources */,
+				1CEC384D26CFA2BB000A3617 /* WelcomeView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1CEC382926CFA067000A3617 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1CEC382A26CFA067000A3617 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1CEC382C26CFA067000A3617 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Covider/Preview Content\"";
+				DEVELOPMENT_TEAM = G6NTB33VYZ;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Covider/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jakubdabrowski.Covider;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1CEC382D26CFA067000A3617 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Covider/Preview Content\"";
+				DEVELOPMENT_TEAM = G6NTB33VYZ;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Covider/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jakubdabrowski.Covider;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1CEC381226CFA066000A3617 /* Build configuration list for PBXProject "Covider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1CEC382926CFA067000A3617 /* Debug */,
+				1CEC382A26CFA067000A3617 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1CEC382B26CFA067000A3617 /* Build configuration list for PBXNativeTarget "Covider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1CEC382C26CFA067000A3617 /* Debug */,
+				1CEC382D26CFA067000A3617 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1CEC382526CFA067000A3617 /* Covider.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1CEC382626CFA067000A3617 /* Covider.xcdatamodel */,
+			);
+			currentVersion = 1CEC382626CFA067000A3617 /* Covider.xcdatamodel */;
+			path = Covider.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 1CEC380F26CFA066000A3617 /* Project object */;
+}
