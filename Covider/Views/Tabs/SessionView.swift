@@ -120,42 +120,55 @@ struct SessionView: View {
     }
     
     @ViewBuilder var viewWithDivision: some View {
-        HStack(spacing: 10) {
+        HStack {
             // All People Counter
-            VStack {
-                Text("All")
-                    .foregroundColor(.gray)
-                    .font(.subheadline)
+            VStack(spacing: 20) {
+                Image(systemName: "person")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .font(.system(size: 100, weight: .ultraLight, design: .default))
+                    .frame(height: 50)
+                    .offset(y: 2)
                 Text(String(allPeopleCounter))
                     .bold()
                     .foregroundColor(.blue)
+                    .offset(y: 5)
             }
             
-            Divider()
-                .frame(height: 50)
+            Spacer()
             
-            VStack {
-                Text("Vaccinated")
-                    .foregroundColor(.gray)
-                    .font(.subheadline)
+            Divider()
+                .frame(height: 150)
+            
+            Spacer()
+            
+            VStack(spacing: 20) {
+                Image("vaccine_positive")
+                    .resizable()
+                    .frame(width: 60, height: 60)
                 Text(String(vaccinatedCounter))
                     .bold()
                     .foregroundColor(.green)
             }
             
-            Divider()
-                .frame(height: 50)
+            Spacer()
             
-            VStack {
-                Text("Unvaccinated")
-                    .foregroundColor(.gray)
-                    .font(.subheadline)
+            Divider()
+                .frame(height: 150)
+            
+            Spacer()
+            
+            VStack(spacing: 20) {
+                Image("vaccine_negative")
+                    .resizable()
+                    .frame(width: 60, height: 60)
                 Text(String(unvaccinatedCounter))
                     .bold()
                     .foregroundColor(.red)
             }
         }
         .font(.title)
+        .padding(.horizontal)
         
         // Increment and decrement buttons
         HStack {
@@ -239,6 +252,12 @@ struct SessionView: View {
         }
         .padding(.vertical)
         .font(.largeTitle)
+    }
+}
+
+struct preview: PreviewProvider {
+    static var previews: some View {
+        SessionView(title: .constant("AAA"), place: .constant("AAA"), guardName: .constant("AAA"), divisionOfVaccinated: .constant(true), startDate: Date())
     }
 }
 

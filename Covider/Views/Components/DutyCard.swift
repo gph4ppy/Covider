@@ -8,25 +8,18 @@
 import SwiftUI
 
 struct DutyCard: View {
+    let duty: Duty
+    
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Title")
+            Text(duty.title)
                 .font(.title3)
             
-            Text("Place 24, Ameno 20-300")
+            Text(duty.place)
                 .font(.headline)
             
-            Text("Jacob")
-                .font(.subheadline)
-            
-            Text(DateFormatter().string(from: Date()))
+            Text("\(duty.guardName), \(duty.startDate)")
                 .font(.subheadline)
         }
-    }
-}
-
-struct DutyCard_Previews: PreviewProvider {
-    static var previews: some View {
-        DutyCard()
     }
 }

@@ -23,7 +23,9 @@ struct HomeView: View {
             ZStack {
                 List {
                     ForEach(duties, id: \.self) { duty in
-                        Text(duty.longitude ?? "nil")
+                        NavigationLink(destination: DetailView(duty: duty)) {
+                            DutyCard(duty: duty)
+                        }
                     }
                     .onDelete(perform: removeDuty)
                 }

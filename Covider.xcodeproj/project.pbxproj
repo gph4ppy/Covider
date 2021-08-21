@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CDE82B126D1006800340CDD /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDE82B026D1006800340CDD /* DetailView.swift */; };
 		1CEC381B26CFA066000A3617 /* CoviderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC381A26CFA066000A3617 /* CoviderApp.swift */; };
 		1CEC381D26CFA066000A3617 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC381C26CFA066000A3617 /* ContentView.swift */; };
 		1CEC381F26CFA067000A3617 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CEC381E26CFA067000A3617 /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1CDE82B026D1006800340CDD /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		1CEC381726CFA066000A3617 /* Covider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Covider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CEC381A26CFA066000A3617 /* CoviderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoviderApp.swift; sourceTree = "<group>"; };
 		1CEC381C26CFA066000A3617 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				1CEC384826CFA29B000A3617 /* HomeView.swift */,
 				1CEC384A26CFA2AB000A3617 /* SessionView.swift */,
 				1CEC384C26CFA2BB000A3617 /* WelcomeView.swift */,
+				1CDE82B026D1006800340CDD /* DetailView.swift */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				1CEC385726CFA2F6000A3617 /* StopWatchView.swift in Sources */,
 				1CEC384426CFA26E000A3617 /* DutyViewModel.swift in Sources */,
 				1CEC383026CFA08B000A3617 /* String+SubstringIn.swift in Sources */,
+				1CDE82B126D1006800340CDD /* DetailView.swift in Sources */,
 				1CEC385126CFA2D8000A3617 /* DutyCard.swift in Sources */,
 				1CEC384126CFA243000A3617 /* Duty+CoreDataProperties.swift in Sources */,
 				1CEC384F26CFA2C8000A3617 /* CarouselView.swift in Sources */,
