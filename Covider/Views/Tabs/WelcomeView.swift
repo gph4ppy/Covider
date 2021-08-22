@@ -61,10 +61,10 @@ struct WelcomeView: View {
             }
             .padding(.vertical)
             
-            Button("Start using app") {
-                self.isFirstTime = false
+            Button(action: { self.isFirstTime = false }) {
+                Text("Start using app")
+                    .menuButtonStyle(background: .green)
             }
-            .menuButtonStyle(background: .green)
         }
         .padding()
         .onAppear(perform: setupWelcomeScreens)
@@ -91,12 +91,6 @@ struct WelcomeView: View {
                                title: "Ready?",
                                description: "This is the end of the quick tutorial. Yes, it's that simple! You don't need anything else - Covider will take care of it all for you. All you have to do is press that beautiful green button...")
         ]
-    }
-}
-
-struct WelcomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        WelcomeView()
     }
 }
 

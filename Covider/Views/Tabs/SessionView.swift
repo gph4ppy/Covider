@@ -51,21 +51,24 @@ struct SessionView: View {
             Alert(title: Text("Confirm"),
                   message: Text("Are you sure you want to end this session?"),
                   primaryButton: .default(Text("End session"), action: {
-                let latitude = locationManager.lastLocation?.coordinate.latitude
-                let longitude = locationManager.lastLocation?.coordinate.longitude
-                
-                let duty = DutyViewModel(title: self.title,
-                                         place: self.place,
-                                         allPeople: Int32(self.allPeopleCounter),
-                                         guardName: self.guardName,
-                                         startDate: self.startDate,
-                                         endDate: Date(),
-                                         latitude: latitude.map(mapLocalization),
-                                         longitude: longitude.map(mapLocalization))
-                
-                DutyViewModel.saveDuty(duty)
-                self.presentationMode.wrappedValue.dismiss()
-            }),
+                    let latitude = locationManager.lastLocation?.coordinate.latitude
+                    let longitude = locationManager.lastLocation?.coordinate.longitude
+                    
+                    let duty = DutyViewModel(title: self.title,
+                                             place: self.place,
+                                             allPeople: Int32(self.allPeopleCounter),
+                                             guardName: self.guardName,
+                                             startDate: self.startDate,
+                                             endDate: Date(),
+                                             divisionOfVaccinated: self.divisionOfVaccinated,
+                                             vaccinatedCount: Int32(self.vaccinatedCounter),
+                                             unvaccinatedCount: Int32(self.unvaccinatedCounter),
+                                             latitude: latitude.map(mapLocalization),
+                                             longitude: longitude.map(mapLocalization))
+                    
+                    DutyViewModel.saveDuty(duty)
+                    self.presentationMode.wrappedValue.dismiss()
+                  }),
                   secondaryButton: .cancel(Text("Go back")))
         }
     }
@@ -283,12 +286,12 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
         
         switch status {
-        case .notDetermined: return "notDetermined"
-        case .authorizedWhenInUse: return "authorizedWhenInUse"
-        case .authorizedAlways: return "authorizedAlways"
-        case .restricted: return "restricted"
-        case .denied: return "denied"
-        default: return "unknown"
+            case .notDetermined: return "notDetermined"
+            case .authorizedWhenInUse: return "authorizedWhenInUse"
+            case .authorizedAlways: return "authorizedAlways"
+            case .restricted: return "restricted"
+            case .denied: return "denied"
+            default: return "unknown"
         }
     }
     

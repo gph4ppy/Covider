@@ -15,6 +15,9 @@ struct DutyViewModel {
     let guardName: String
     let startDate: Date
     let endDate: Date
+    let divisionOfVaccinated: Bool
+    let vaccinatedCount: Int32
+    let unvaccinatedCount: Int32
     
     // I am using the optional value, because if the user does not grant permission to read the current location,
     // DetailView will display a gray rectangle. I'm giving the user a choice.
@@ -26,14 +29,17 @@ struct DutyViewModel {
             let persistenceContainer = PersistenceController.shared.container
             let entity = Duty(context: persistenceContainer.viewContext)
             
-            entity.title        = duty.title
-            entity.place        = duty.place
-            entity.allPeople    = duty.allPeople
-            entity.guardName    = duty.guardName
-            entity.startDate    = duty.startDate
-            entity.endDate      = duty.endDate
-            entity.latitude     = duty.latitude
-            entity.longitude    = duty.longitude
+            entity.title                    = duty.title
+            entity.place                    = duty.place
+            entity.allPeople                = duty.allPeople
+            entity.guardName                = duty.guardName
+            entity.startDate                = duty.startDate
+            entity.endDate                  = duty.endDate
+            entity.latitude                 = duty.latitude
+            entity.longitude                = duty.longitude
+            entity.divisionOfVaccinated     = duty.divisionOfVaccinated
+            entity.vaccinatedCount          = duty.vaccinatedCount
+            entity.unvaccinatedCount        = duty.unvaccinatedCount
             
             PersistenceController.shared.saveContext()
         }

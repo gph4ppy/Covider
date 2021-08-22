@@ -23,6 +23,9 @@ extension Duty {
     @NSManaged public var longitude: String?
     @NSManaged public var startDate: Date
     @NSManaged public var endDate: Date
+    @NSManaged public var divisionOfVaccinated: Bool
+    @NSManaged public var vaccinatedCount: Int32
+    @NSManaged public var unvaccinatedCount: Int32
 }
 
 extension Duty : Identifiable {

@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct DutySetupAlert: View {
-    @State var title: String = ""
-    @State var guardName: String = ""
-    @State var placeName: String = ""
-    @State var vaccinatedDivision: Bool = true
+    @State private var title: String                = ""
+    @State private var guardName: String            = ""
+    @State private var placeName: String            = ""
+    @State private var vaccinatedDivision: Bool     = true
     @Binding var isVisible: Bool
     var isDisabled: Bool {
         title.isEmpty || guardName.isEmpty || placeName.isEmpty ? true : false
@@ -19,49 +19,54 @@ struct DutySetupAlert: View {
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
+            // Title and description
             VStack(alignment: .center) {
-                Text("Setup Duty")
+                Text(LocalizedStrings.setupDutyTitle)
                     .font(.largeTitle)
                     .fontWeight(.semibold)
                 
-                Text("This view is used to configure your duty. Fill in the following data.")
+                Text(LocalizedStrings.setupDutyDescription)
                     .font(.footnote)
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
             }
             
+            // Form
             VStack(spacing: 10) {
-                TextField("Title", text: $title)
+                // Title
+                TextField(LocalizedStrings.title, text: $title)
                     .padding(.top)
                 
                 Divider()
                 
-                TextField("Guard's name", text: $guardName)
+                // Guard's name
+                TextField(LocalizedStrings.guardName, text: $guardName)
                 
                 Divider()
                 
-                TextField("Name of the place", text: $placeName)
+                // Place - address, name, etc.
+                TextField(LocalizedStrings.place, text: $placeName)
                 
                 Divider()
                 
-                Toggle("Vaccinated Division", isOn: $vaccinatedDivision)
+                // Division of the vaccinated people - Toggle
+                Toggle(LocalizedStrings.vaccinatedDivision, isOn: $vaccinatedDivision)
                     .foregroundColor(Color(.systemGray3))
                     .padding(.trailing, 2)
                 
                 Spacer()
                 
+                // Buttons HStack
                 HStack {
-                    Button {
-                        withAnimation {
-                            self.isVisible = false
-                        }
-                    } label: {
-                        Text("Cancel")
+                    // Cancel button
+                    Button(action: cancel) {
+                        Text(LocalizedStrings.cancel)
                             .menuButtonStyle(background: .red)
                     }
                     
                     Spacer()
                     
+                    // Start Session NavLink
                     NavigationLink(destination: SessionView(
                         title: $title,
                         place: $placeName,
@@ -69,7 +74,7 @@ struct DutySetupAlert: View {
                         divisionOfVaccinated: $vaccinatedDivision,
                         startDate: Date())
                     ) {
-                        Text("Start Duty")
+                        Text(LocalizedStrings.startDuty)
                             .menuButtonStyle(background: isDisabled ? .gray : .green)
                     }
                     .disabled(isDisabled)
@@ -77,17 +82,25 @@ struct DutySetupAlert: View {
             }
         }
         .formStyle()
-        .onChange(of: isVisible) { _ in
-            self.title = ""
-            self.guardName = ""
-            self.placeName = ""
-            self.vaccinatedDivision = true
-        }
+        .onChange(of: isVisible, perform: clearAlertFields)
     }
 }
 
-struct DutySetupAlert_Previews: PreviewProvider {
-    static var previews: some View {
-        DutySetupAlert(isVisible: .constant(true))
+// MARK: - Methods
+extension DutySetupAlert {
+    /// This method clears TextFields when the isVisible value changes.
+    private func clearAlertFields(_: Bool) -> Void {
+        self.title = ""
+        self.guardName = ""
+        self.placeName = ""
+        self.vaccinatedDivision = true
+    }
+    
+    /// This method hides the keyboard and alert.
+    private func cancel() {
+        withAnimation {
+            UIApplication.shared.endEditing()
+            self.isVisible = false
+        }
     }
 }

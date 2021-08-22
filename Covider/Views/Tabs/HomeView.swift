@@ -19,8 +19,8 @@ struct HomeView: View {
     ) private var duties: FetchedResults<Duty>
     
     var body: some View {
-        NavigationView {
-            ZStack {
+        ZStack {
+            NavigationView {
                 List {
                     ForEach(duties, id: \.self) { duty in
                         NavigationLink(destination: DetailView(duty: duty)) {
@@ -29,37 +29,38 @@ struct HomeView: View {
                     }
                     .onDelete(perform: removeDuty)
                 }
-                .overlay(
-                    Color.primary
-                        .opacity(showingSetupForm ? 0.4 : 0)
-                        .ignoresSafeArea()
-                )
-                
-                DutySetupAlert(isVisible: $showingSetupForm)
-                    .offset(y: showingSetupForm ? 0 : UIScreen.main.bounds.height)
-                    .ignoresSafeArea()
-            }
-            .navigationBarTitle("Duties")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("New duty") {
-                        withAnimation {
-                            self.showingSetupForm = true
+                .navigationBarTitle("Duties")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("New duty") {
+                            withAnimation {
+                                self.showingSetupForm = true
+                            }
                         }
-                    }
-                    .disabled(showingSetupForm)
-                }
-                
-                ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
                         .disabled(showingSetupForm)
+                    }
+                    
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        EditButton()
+                            .disabled(showingSetupForm)
+                    }
+                }
+                .onAppear {
+                    self.showingSetupForm = false
                 }
             }
-            .onAppear {
-                self.showingSetupForm = false
-            }
+            .navigationViewStyle(StackNavigationViewStyle())
+            .blur(radius: showingSetupForm ? 3 : 0)
+            .overlay(
+                Color.primary
+                    .opacity(showingSetupForm ? 0.4 : 0)
+                    .ignoresSafeArea()
+            )
+            
+            DutySetupAlert(isVisible: $showingSetupForm)
+                .offset(y: showingSetupForm ? 0 : UIScreen.main.bounds.height)
+                .ignoresSafeArea()
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     func removeDuty(at offsets: IndexSet) {

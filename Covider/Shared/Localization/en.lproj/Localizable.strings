@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  Covider
+
+  Created by Jakub "GPH4PPY" Dąbrowski on 22/08/2021.
+  
+*/
+
+// MARK: - Duty Setup Alert
+"setup_duty_title" = "Setup Duty";
+"setup_duty_description" = "This view is used to configure your duty. Fill in the following data.";
+"title" = "Title";
+"guard_name" = "Guard's name";
+"place" = "Place";
+"vaccinated_division" = "Vaccinated Division";
+"cancel" = "Cancel";
+"start_duty" = "Start Duty";

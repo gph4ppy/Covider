@@ -18,8 +18,9 @@ struct DutyCard: View {
             Text(duty.place)
                 .font(.headline)
             
-            Text("\(duty.guardName), \(duty.startDate)")
+            Text("\(duty.startDate)")
                 .font(.subheadline)
+                .foregroundColor(.gray)
         }
     }
 }

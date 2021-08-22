@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct StopWatchView: View {
-    @State private var progressTime = 0
-    
-    var hours: Int      { progressTime / 3600 }
-    var minutes: Int    { (progressTime % 3600) / 60 }
-    var seconds: Int    { progressTime % 60 }
+    @State private var progressTime     = 0
+    var hours: Int                      { progressTime / 3600 }
+    var minutes: Int                    { (progressTime % 3600) / 60 }
+    var seconds: Int                    { progressTime % 60 }
     var timer: Timer {
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {_ in
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             progressTime += 1
         }
     }
