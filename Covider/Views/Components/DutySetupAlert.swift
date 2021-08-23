@@ -12,6 +12,7 @@ struct DutySetupAlert: View {
     @State private var guardName: String            = ""
     @State private var placeName: String            = ""
     @State private var vaccinatedDivision: Bool     = true
+    @State private var didStartSession: Bool        = false
     @Binding var isVisible: Bool
     var isDisabled: Bool {
         title.isEmpty || guardName.isEmpty || placeName.isEmpty ? true : false
@@ -65,15 +66,11 @@ struct DutySetupAlert: View {
                     }
                     
                     Spacer()
-                    
-                    // Start Session NavLink
-                    NavigationLink(destination: SessionView(
-                        title: $title,
-                        place: $placeName,
-                        guardName: $guardName,
-                        divisionOfVaccinated: $vaccinatedDivision,
-                        startDate: Date())
-                    ) {
+
+                    Button {
+                        self.didStartSession = true
+                        self.isVisible = false
+                    } label: {
                         Text(LocalizedStrings.startDuty)
                             .menuButtonStyle(background: isDisabled ? .gray : .green)
                     }
@@ -83,6 +80,15 @@ struct DutySetupAlert: View {
         }
         .formStyle()
         .onChange(of: isVisible, perform: clearAlertFields)
+        .fullScreenCover(isPresented: $didStartSession) {
+            SessionView(
+                title: title,
+                place: placeName,
+                guardName: guardName,
+                divisionOfVaccinated: vaccinatedDivision,
+                startDate: Date()
+            )
+        }
     }
 }
 
@@ -90,10 +96,12 @@ struct DutySetupAlert: View {
 extension DutySetupAlert {
     /// This method clears TextFields when the isVisible value changes.
     private func clearAlertFields(_: Bool) -> Void {
-        self.title = ""
-        self.guardName = ""
-        self.placeName = ""
-        self.vaccinatedDivision = true
+        if !didStartSession {
+            self.title = ""
+            self.guardName = ""
+            self.placeName = ""
+            self.vaccinatedDivision = true
+        }
     }
     
     /// This method hides the keyboard and alert.

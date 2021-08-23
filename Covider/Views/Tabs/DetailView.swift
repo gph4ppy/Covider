@@ -9,21 +9,28 @@ import SwiftUI
 import MapKit
 
 struct DetailView: View {
-    @State var data: [(title: String, dutyData: String)] = []
-    let duty: Duty
-    let dateFormatter: DateFormatter = {
+    @State private var data: [(title: String, dutyData: String)]    = []
+    private let gradient                                            = Gradient(colors: [Color.black, Color.black.opacity(0)])
+    private let dateFormatter: DateFormatter                        = {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
         formatter.timeStyle = .short
         return formatter
     }()
+    private let calendar                                            = Calendar.current
+    let duty: Duty
     
     var body: some View {
+        let startHour = calendar.component(.hour, from: duty.startDate)
+        let endHour = calendar.component(.hour, from: duty.endDate)
+        
         ScrollView(.vertical) {
             mapOrEmptyRectangle
                 .frame(height: 250)
                 .mask(
-                    LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
+                    LinearGradient(gradient: gradient,
+                                   startPoint: .top,
+                                   endPoint: .bottom)
                 )
             
             // Title
@@ -48,28 +55,66 @@ struct DetailView: View {
             }
             .padding(.horizontal)
             
+            // Chart
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(startHour..<(endHour + Int.random(in: 1...24))) { hour in
+                        let random = Int.random(in: 2...300)
+                        VStack {
+                            Spacer()
+                            
+                            Text(String(random))
+                                .font(.footnote)
+                                .rotationEffect(.degrees(-90))
+                                .offset(y: 35)
+                                .zIndex(1)
+                                .offset(y: random > 60 ? 0 : -35)
+                            
+                            RoundedRectangle(cornerRadius: 4)
+                                .fill(Color.blue)
+                                .frame(width: 30, height: CGFloat(random) * 0.5)
+                            
+                            Text(String(hour > 24 ? hour - 24 : hour))
+                                .font(.footnote)
+                                .frame(height: 20)
+                        }
+                    }
+                }
+            }
+            .padding()
+            .padding(.top, 20)
+            
             Spacer()
         }
         .edgesIgnoringSafeArea(.top)
         .onAppear(perform: setupData)
     }
-    
-    func setupData() {
+}
+
+// MARK: - Methods
+extension DetailView {
+    /// This method prepares data to display.
+    private func setupData() {
         self.data = [
-            (title: "All people", dutyData: String(duty.allPeople)),
-            (title: "Guard", dutyData: duty.guardName),
-            (title: "Place", dutyData: duty.place),
-            (title: "Start Date", dutyData: dateFormatter.string(from: duty.startDate)),
-            (title: "End Date", dutyData: dateFormatter.string(from: duty.endDate)),
+            (title: LocalizedStrings.allPeople, dutyData: String(duty.allPeople)),
+            (title: LocalizedStrings.guardString, dutyData: duty.guardName),
+            (title: LocalizedStrings.place, dutyData: duty.place),
+            (title: LocalizedStrings.startDate, dutyData: dateFormatter.string(from: duty.startDate)),
+            (title: LocalizedStrings.endDate, dutyData: dateFormatter.string(from: duty.endDate)),
         ]
         
         if duty.divisionOfVaccinated {
-            data.insert((title: "Vaccinated", dutyData: String(duty.vaccinatedCount)), at: 1)
-            data.insert((title: "Unvaccinated", dutyData: String(duty.unvaccinatedCount)), at: 2)
+            data.insert((title: LocalizedStrings.vaccinated, dutyData: String(duty.vaccinatedCount)), at: 1)
+            data.insert((title: LocalizedStrings.unvaccinated, dutyData: String(duty.unvaccinatedCount)), at: 2)
         }
     }
-    
-    @ViewBuilder var mapOrEmptyRectangle: some View {
+}
+
+// MARK: - Views
+extension DetailView {
+    // If the user allows downloading the location, the map with the place of duty is displayed.
+    // If the user does not allow downloading location, a gray rectangle is displayed.
+    @ViewBuilder private var mapOrEmptyRectangle: some View {
         if let latitudeString = duty.latitude,
            let longitudeString = duty.longitude,
            let latitude = Double(latitudeString),

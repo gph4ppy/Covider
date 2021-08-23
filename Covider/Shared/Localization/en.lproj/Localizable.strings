@@ -6,6 +6,40 @@
   
 */
 
+// MARK: - Welcome View
+"welcome_to_covider" = "Welcome to Covider";
+"start_using_app" = "Start using app";
+"navigation" = "Navigation";
+"the_purpose" = "The purpose";
+"head_in_the_clouds" = "Head in the clouds?";
+"you_are_in_control" = "You are in control";
+"ready" = "Ready?";
+"welcome_screen_description_1" = "Swipe to the left or right to move around the tutorial.";
+"welcome_screen_description_2" = "Covider is a simple application that facilitates the work of security guards to watch places where counting entering people is necessary.";
+"welcome_screen_description_3" = "With Covider, you don't have to remember how many people have entered - it's all on the screen! Speaking of clouds... Did you know that your duties are saved not only locally but also in iCloud, so they stay in sync across all your devices?";
+"welcome_screen_description_4" = "You decide when you press the add or subtract button. Did you tap the screen by accident? No problem - the buttons are large, but thanks to the haptic vibrations, you always know when you press them.";
+"welcome_screen_description_5" = "This is the end of the quick tutorial. Yes, it's that simple! You don't need anything else - Covider will take care of it all for you. All you have to do is press that beautiful green button below...";
+"empty_list" = "Oh no! You do not have saved duties. Press the button in the upper right corner to add a new duty.";
+
+// MARK: - Home View
+"duties" = "Duties";
+"new_duty" = "New duty";
+
+// MARK: - Session View
+"end_session" = "End session";
+"confirm" = "Confirm";
+"end_session_description" = "Are you sure you want to end this session?";
+"go_back" = "Go back";
+"people_in_this_place" = "people in this place";
+
+// MARK: - Detail View
+"all_people" = "All people";
+"guard" = "Guard";
+"start_date" = "Start Date";
+"end_date" = "End Date";
+"vaccinated" = "Vaccinated";
+"unvaccinated" = "Unvaccinated";
+
 // MARK: - Duty Setup Alert
 "setup_duty_title" = "Setup Duty";
 "setup_duty_description" = "This view is used to configure your duty. Fill in the following data.";

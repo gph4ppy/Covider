@@ -6,25 +6,31 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct SessionView: View {
-    @StateObject var locationManager = LocationManager()
+    @StateObject var locationManager                    = LocationManager()
     @State private var allPeopleCounter: Int            = 0
     @State private var vaccinatedCounter: Int           = 0
     @State private var unvaccinatedCounter: Int         = 0
     @State private var buttonSize: CGFloat              = 80
     @State private var showingConfirmationAlert: Bool   = false
-    @Binding var title: String
-    @Binding var place: String
-    @Binding var guardName: String
-    @Binding var divisionOfVaccinated: Bool
+    @State private var progressTime: Int                = 0
+    @State private var allEntriesDate: [Date]           = []
+    @State private var vaccinatedEntriesDate: [Date]    = []
+    @State private var unvaccinatedEntriesDate: [Date]  = []
     @Environment(\.presentationMode) private var presentationMode
+    var title: String
+    var place: String
+    var guardName: String
+    var divisionOfVaccinated: Bool
     var startDate: Date
     
     var body: some View {
         VStack {
             Spacer()
-            
+
+            // Session View
             if divisionOfVaccinated {
                 viewWithDivision
             } else {
@@ -33,95 +39,115 @@ struct SessionView: View {
             
             Spacer()
             
-            StopWatchView()
+            // Timer
+            StopWatchView(progressTime: $progressTime)
             
-            Button {
-                self.showingConfirmationAlert = true
-            } label: {
-                Text("End session")
+            // End Session Button
+            Button(action: { self.showingConfirmationAlert = true }) {
+                Text(LocalizedStrings.endSession)
                     .menuButtonStyle(background: Color(.red))
             }
         }
         .padding()
         .navigationBarBackButtonHidden(true)
-        .onAppear {
-            self.buttonSize = divisionOfVaccinated ? 50 : 80
-        }
-        .alert(isPresented: $showingConfirmationAlert) {
-            Alert(title: Text("Confirm"),
-                  message: Text("Are you sure you want to end this session?"),
-                  primaryButton: .default(Text("End session"), action: {
-                    let latitude = locationManager.lastLocation?.coordinate.latitude
-                    let longitude = locationManager.lastLocation?.coordinate.longitude
-                    
-                    let duty = DutyViewModel(title: self.title,
-                                             place: self.place,
-                                             allPeople: Int32(self.allPeopleCounter),
-                                             guardName: self.guardName,
-                                             startDate: self.startDate,
-                                             endDate: Date(),
-                                             divisionOfVaccinated: self.divisionOfVaccinated,
-                                             vaccinatedCount: Int32(self.vaccinatedCounter),
-                                             unvaccinatedCount: Int32(self.unvaccinatedCounter),
-                                             latitude: latitude.map(mapLocalization),
-                                             longitude: longitude.map(mapLocalization))
-                    
-                    DutyViewModel.saveDuty(duty)
-                    self.presentationMode.wrappedValue.dismiss()
-                  }),
-                  secondaryButton: .cancel(Text("Go back")))
-        }
+        .alert(isPresented: $showingConfirmationAlert, content: createAlert)
+        .onAppear { self.buttonSize = divisionOfVaccinated ? 50 : 80 }
+    }
+}
+
+// MARK: - Methods
+extension SessionView {
+    /// This method saves the duty.
+    func saveDuty() {
+        let latitude = locationManager.lastLocation?.coordinate.latitude
+        let longitude = locationManager.lastLocation?.coordinate.longitude
+        
+        let duty = DutyViewModel(title: self.title,
+                                 place: self.place,
+                                 allPeople: Int32(self.allPeopleCounter),
+                                 guardName: self.guardName,
+                                 startDate: self.startDate,
+                                 endDate: Date(),
+                                 divisionOfVaccinated: self.divisionOfVaccinated,
+                                 vaccinatedCount: Int32(self.vaccinatedCounter),
+                                 unvaccinatedCount: Int32(self.unvaccinatedCounter),
+                                 allEntriesDate: self.allEntriesDate,
+                                 vaccinatedEntriesDate: self.vaccinatedEntriesDate,
+                                 unvaccinatedEntriesDate: self.unvaccinatedEntriesDate,
+                                 latitude: latitude.map(mapLocalization),
+                                 longitude: longitude.map(mapLocalization))
+        
+        DutyViewModel.saveDuty(duty)
+        self.presentationMode.wrappedValue.dismiss()
     }
     
-    
+    /// This method converts the localization degrees (Double) to the String.
+    /// - Parameter degrees: A latitude or longitude value specified in degrees.
+    /// - Returns: String of a latitude or longitude.
     func mapLocalization(localization degrees: CLLocationDegrees) -> String {
         return String(degrees)
     }
     
+    /// This method causes haptic vibrations and then increments the counter by 1.
+    /// - Parameter counter: Counter of people entering to the place - according to the division of vaccinated.
+    func add(to counter: inout Int) {
+        let hapticPlus = UIImpactFeedbackGenerator(style: .heavy)
+        hapticPlus.impactOccurred()
+        counter += 1
+    }
+    
+    /// This method causes haptic vibrations and then decrements the counter by 1.
+    /// - Parameter counter: Counter of people entering to the place - according to the division of vaccinated.
+    func subtract(from counter: inout Int) {
+        let hapticMinus = UIImpactFeedbackGenerator(style: .medium)
+        hapticMinus.impactOccurred()
+        counter -= counter > 0 ? 1 : 0
+    }
+}
+
+// MARK: - Views
+extension SessionView {
+    /// This method creates the confirmation alert.
+    /// - Returns: Confirmation Alert
+    func createAlert() -> Alert {
+        Alert(title: Text(LocalizedStrings.confirm),
+              message: Text(LocalizedStrings.endSessionDescription),
+              primaryButton: .default(Text(LocalizedStrings.endSession), action: saveDuty),
+              secondaryButton: .cancel(Text(LocalizedStrings.goBack)))
+    }
+    
+    // A View which is shown when the user disabled the division of vaccinated.
     @ViewBuilder var viewWithoutDivision: some View {
+        // Counter
         Text(String(allPeopleCounter))
             .font(.system(size: 90, weight: .bold, design: .default))
         
-        Text("people in this place")
+        Text(LocalizedStrings.peopleInThisPlace)
             .font(.largeTitle)
             .offset(y: -10)
         
         // Increment and decrement buttons
         HStack {
             // Minus button
-            Button(action: {
-                let hapticMinus = UIImpactFeedbackGenerator(style: .soft)
-                hapticMinus.impactOccurred()
-                self.allPeopleCounter -= self.allPeopleCounter > 0 ? 1 : 0
-            }, label: {
+            Button(action: { subtract(from: &allPeopleCounter) }) {
                 Image(systemName: "minus")
-                    .frame(width: buttonSize, height: buttonSize)
-                    .background(Color.red)
-                    .clipShape(Circle())
-                    .foregroundColor(.white)
-                    .font(.largeTitle)
-            })
+                    .operationButtonStyle(size: buttonSize, color: .red)
+            }
             
             Spacer()
             
             // Plus button
-            Button(action: {
-                let hapticPlus = UIImpactFeedbackGenerator(style: .light)
-                hapticPlus.impactOccurred()
-                self.allPeopleCounter += 1
-            }, label: {
+            Button(action: { add(to: &allPeopleCounter) }) {
                 Image(systemName: "plus")
-                    .frame(width: buttonSize, height: buttonSize)
-                    .background(Color.green)
-                    .clipShape(Circle())
-                    .foregroundColor(.white)
-                    .font(.largeTitle)
-            })
+                    .operationButtonStyle(size: buttonSize, color: .green)
+            }
         }
+        .font(.largeTitle)
         .padding(.vertical)
         .shadow(radius: 5)
     }
     
+    // A View which is shown when the user enabled the division of vaccinated.
     @ViewBuilder var viewWithDivision: some View {
         HStack {
             // All People Counter
@@ -132,6 +158,7 @@ struct SessionView: View {
                     .font(.system(size: 100, weight: .ultraLight, design: .default))
                     .frame(height: 50)
                     .offset(y: 2)
+                
                 Text(String(allPeopleCounter))
                     .bold()
                     .foregroundColor(.blue)
@@ -145,10 +172,12 @@ struct SessionView: View {
             
             Spacer()
             
+            // Vaccinated Counter
             VStack(spacing: 20) {
                 Image("vaccine_positive")
                     .resizable()
                     .frame(width: 60, height: 60)
+                
                 Text(String(vaccinatedCounter))
                     .bold()
                     .foregroundColor(.green)
@@ -161,10 +190,12 @@ struct SessionView: View {
             
             Spacer()
             
+            // Unvaccinated Counter
             VStack(spacing: 20) {
                 Image("vaccine_negative")
                     .resizable()
                     .frame(width: 60, height: 60)
+                
                 Text(String(unvaccinatedCounter))
                     .bold()
                     .foregroundColor(.red)
@@ -183,16 +214,12 @@ struct SessionView: View {
                 self.vaccinatedCounter -= self.vaccinatedCounter > 0 ? 1 : 0
             }, label: {
                 Image(systemName: "minus")
-                    .frame(width: buttonSize, height: buttonSize)
-                    .background(Color.red)
-                    .clipShape(Circle())
-                    .foregroundColor(.white)
-                    .font(.largeTitle)
+                    .operationButtonStyle(size: buttonSize, color: .red)
             })
             
             Spacer()
             
-            Text("Vaccinated")
+            Text(LocalizedStrings.vaccinated)
                 .font(.title)
                 .bold()
             
@@ -206,11 +233,7 @@ struct SessionView: View {
                 self.vaccinatedCounter += 1
             }, label: {
                 Image(systemName: "plus")
-                    .frame(width: buttonSize, height: buttonSize)
-                    .background(Color.green)
-                    .clipShape(Circle())
-                    .foregroundColor(.white)
-                    .font(.largeTitle)
+                    .operationButtonStyle(size: buttonSize, color: .green)
             })
         }
         .padding(.vertical)
@@ -225,15 +248,12 @@ struct SessionView: View {
                 self.unvaccinatedCounter -= self.unvaccinatedCounter > 0 ? 1 : 0
             }, label: {
                 Image(systemName: "minus")
-                    .frame(width: buttonSize, height: buttonSize)
-                    .background(Color.red)
-                    .clipShape(Circle())
-                    .foregroundColor(.white)
+                    .operationButtonStyle(size: buttonSize, color: .red)
             })
             
             Spacer()
             
-            Text("Unvaccinated")
+            Text(LocalizedStrings.unvaccinated)
                 .font(.title)
                 .bold()
             
@@ -247,62 +267,10 @@ struct SessionView: View {
                 self.unvaccinatedCounter += 1
             }, label: {
                 Image(systemName: "plus")
-                    .frame(width: buttonSize, height: buttonSize)
-                    .background(Color.green)
-                    .clipShape(Circle())
-                    .foregroundColor(.white)
+                    .operationButtonStyle(size: buttonSize, color: .green)
             })
         }
         .padding(.vertical)
         .font(.largeTitle)
-    }
-}
-
-struct preview: PreviewProvider {
-    static var previews: some View {
-        SessionView(title: .constant("AAA"), place: .constant("AAA"), guardName: .constant("AAA"), divisionOfVaccinated: .constant(true), startDate: Date())
-    }
-}
-
-import CoreLocation
-import Combine
-
-class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    private let locationManager = CLLocationManager()
-    @Published var locationStatus: CLAuthorizationStatus?
-    @Published var lastLocation: CLLocation?
-    
-    override init() {
-        super.init()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-    }
-    
-    var statusString: String {
-        guard let status = locationStatus else {
-            return "unknown"
-        }
-        
-        switch status {
-            case .notDetermined: return "notDetermined"
-            case .authorizedWhenInUse: return "authorizedWhenInUse"
-            case .authorizedAlways: return "authorizedAlways"
-            case .restricted: return "restricted"
-            case .denied: return "denied"
-            default: return "unknown"
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        locationStatus = status
-        print(#function, statusString)
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        lastLocation = location
-        print(#function, location)
     }
 }

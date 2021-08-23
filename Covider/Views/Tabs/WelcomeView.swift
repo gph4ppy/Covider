@@ -8,20 +8,23 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    @State var currentIndex: Int = 0
-    @State var welcomeScreens: [WelcomeScreenModel] = []
-    @AppStorage("isFirstTime") private var isFirstTime: Bool = true
+    @State var currentIndex: Int                                = 0
+    @State var welcomeScreens: [WelcomeScreenModel]             = []
+    @AppStorage("isFirstTime") private var isFirstTime: Bool    = true
     
     var body: some View {
         VStack {
-            Text("Welcome to Covider")
+            // Title
+            Text(LocalizedStrings.welcomeToCovider)
                 .font(.largeTitle)
                 .fontWeight(.semibold)
             
+            // Carousel View with tutorial
             CarouselView(index: $currentIndex, welcomeScreens: welcomeScreens) { screen in
                 GeometryReader { geom in
                     let size = geom.size
                     
+                    // Tutorial Views
                     VStack(spacing: 4) {
                         Spacer()
                         
@@ -61,35 +64,34 @@ struct WelcomeView: View {
             }
             .padding(.vertical)
             
+            // Start using app button
             Button(action: { self.isFirstTime = false }) {
-                Text("Start using app")
+                Text(LocalizedStrings.startUsingApp)
                     .menuButtonStyle(background: .green)
             }
         }
         .padding()
         .onAppear(perform: setupWelcomeScreens)
-        .fullScreenCover(isPresented: .constant(!isFirstTime)) {
-            EmptyView()
-        }
+        .fullScreenCover(isPresented: .constant(!isFirstTime)) { HomeView() }
     }
     
     func setupWelcomeScreens() {
         self.welcomeScreens = [
             WelcomeScreenModel(welcomeView: AnyView(leftRightArrows),
-                               title: "Navigation",
-                               description: "Swipe to the left or right to move around the menu."),
+                               title: LocalizedStrings.navigation,
+                               description: LocalizedStrings.welcomeScreenDescription1),
             WelcomeScreenModel(welcomeView: AnyView(heartRectangle),
-                               title: "The purpose",
-                               description: "Covider is a simple application that facilitates the work of security guards to watch places where counting entering people is necessary."),
+                               title: LocalizedStrings.thePurpose,
+                               description: LocalizedStrings.welcomeScreenDescription2),
             WelcomeScreenModel(welcomeView: AnyView(cloud),
-                               title: "Head in the clouds?",
-                               description: "With Covider, you don't have to remember how many people have entered - it's all on the screen! Speaking of clouds... Did you know that your duties are saved not only locally but also in iCloud, so they stay in sync across all your devices?"),
+                               title: LocalizedStrings.headInTheClouds,
+                               description: LocalizedStrings.welcomeScreenDescription3),
             WelcomeScreenModel(welcomeView: AnyView(buttons),
-                               title: "You are in control",
-                               description: "You decide when you press the add or subtract button. Did you tap the screen by accident? No problem - the buttons are large, but thanks to the haptic vibrations, you always know when you press them."),
+                               title: LocalizedStrings.youAreInControl,
+                               description: LocalizedStrings.welcomeScreenDescription4),
             WelcomeScreenModel(welcomeView: AnyView(sparkles),
-                               title: "Ready?",
-                               description: "This is the end of the quick tutorial. Yes, it's that simple! You don't need anything else - Covider will take care of it all for you. All you have to do is press that beautiful green button...")
+                               title: LocalizedStrings.ready,
+                               description: LocalizedStrings.welcomeScreenDescription5)
         ]
     }
 }

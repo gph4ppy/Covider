@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StopWatchView: View {
-    @State private var progressTime     = 0
+    @Binding var progressTime: Int
     var hours: Int                      { progressTime / 3600 }
     var minutes: Int                    { (progressTime % 3600) / 60 }
     var seconds: Int                    { progressTime % 60 }

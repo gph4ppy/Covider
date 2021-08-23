@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension Duty {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Duty> {
         return NSFetchRequest<Duty>(entityName: "Duty")
@@ -26,6 +25,9 @@ extension Duty {
     @NSManaged public var divisionOfVaccinated: Bool
     @NSManaged public var vaccinatedCount: Int32
     @NSManaged public var unvaccinatedCount: Int32
+    @NSManaged public var allEntriesDate: [Date]
+    @NSManaged public var vaccinatedEntriesDate: [Date]
+    @NSManaged public var unvaccinatedEntriesDate: [Date]
 }
 
 extension Duty : Identifiable {

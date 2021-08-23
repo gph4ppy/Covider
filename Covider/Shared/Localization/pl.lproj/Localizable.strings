@@ -5,3 +5,47 @@
   Created by Jakub "GPH4PPY" Dąbrowski on 22/08/2021.
   
 */
+
+// MARK: - Welcome View
+"welcome_to_covider" = "Witaj w Covider";
+"start_using_app" = "Rozpocznij korzystanie z aplikacji";
+"navigation" = "Nawigacja";
+"the_purpose" = "Cel";
+"head_in_the_clouds" = "Z głową w chmurach?";
+"you_are_in_control" = "Masz kontrolę";
+"ready" = "Gotowy?";
+"welcome_screen_description_1" = "Przewiń w lewo lub w prawo, aby poruszać się po poradniku.";
+"welcome_screen_description_2" = "Covider jest prostą aplikacją, która ułatwia pracę ochroniarzy w pilnowaniu miejsc, gdzie niezbędne jest liczenie ludzi.";
+"welcome_screen_description_3" = "Dzięki Covider nie musisz pamiętać ile osób weszło - wszystkie wyświetla się na ekranie! A jak już mowa o chmurach... Czy wiedziałeś, że Twoje służby są zapisywane nie tylko lokalnie, lecz również w iCloud, dzięki czemu dane są synchronizowane na Twoich wszystkich urządzeniach?";
+"welcome_screen_description_4" = "To Ty decydujesz kiedy wciśniesz przycisk dodawania lub odejmowania. Wcisnąłeś przez przypadek przycisk? Nie ma problemu - przyciski są duże, lecz dzięki wibracjom zawsze będziesz wiedział, kiedy je wciskasz.";
+"welcome_screen_description_5" = "To koniec tego szybkiego poradnika. Tak, to takie proste! Nie potrzebujesz niczego więcej - Covider zajmie się tym wszystkim za ciebie. Jedyne co musisz zrobić to wcisnąć ten piękny zielony przycisk poniżej...";
+"empty_list" = "Oh nie! Nie posiadasz zapisanych służb. Wciśnij przycisk w prawym górnym rogu, aby dodać nową służbę.";
+
+// MARK: - Home View
+"duties" = "Służby";
+"new_duty" = "Nowa służba";
+
+// MARK: - Session View
+"end_session" = "Zakończ służbę";
+"confirm" = "Potwierdź";
+"end_session_description" = "Czy jesteś pewny, że chcesz zakończyć tę sesję?";
+"go_back" = "Cofnij";
+"people_in_this_place" = "ludzi w tym miejscu";
+
+// MARK: - Detail View
+"all_people" = "Wszyscy ludzie";
+"guard" = "Ochroniarz";
+"start_date" = "Data rozpoczęcia";
+"end_date" = "Data zakończenia";
+"vaccinated" = "Zaszczepieni";
+"unvaccinated" = "Niezaszczepieni";
+
+// MARK: - Duty Setup Alert
+"setup_duty_title" = "Dostosuj służbę";
+"setup_duty_description" = "Ten widok służy do skonfigurowania Twojej służby. Uzupełnij wszystkie dane poniżej.";
+"title" = "Tytuł";
+"guard_name" = "Imię ochroniarza";
+"place" = "Miejsce";
+"vaccinated_division" = "Podział na zaszczepionych";
+"cancel" = "Anuluj";
+"start_duty" = "Rozpocznij służbę";

@@ -18,12 +18,17 @@ struct DutyViewModel {
     let divisionOfVaccinated: Bool
     let vaccinatedCount: Int32
     let unvaccinatedCount: Int32
+    let allEntriesDate: [Date]
+    let vaccinatedEntriesDate: [Date]
+    let unvaccinatedEntriesDate: [Date]
     
     // I am using the optional value, because if the user does not grant permission to read the current location,
     // DetailView will display a gray rectangle. I'm giving the user a choice.
     let latitude: String?
     let longitude: String?
     
+    /// This method saves the duty to the context.
+    /// - Parameter duty: A parameter of DutyViewModel type, which contains the data to save.
     static public func saveDuty(_ duty: DutyViewModel) {
         withAnimation {
             let persistenceContainer = PersistenceController.shared.container
@@ -40,6 +45,9 @@ struct DutyViewModel {
             entity.divisionOfVaccinated     = duty.divisionOfVaccinated
             entity.vaccinatedCount          = duty.vaccinatedCount
             entity.unvaccinatedCount        = duty.unvaccinatedCount
+            entity.allEntriesDate           = duty.allEntriesDate
+            entity.vaccinatedEntriesDate    = duty.vaccinatedEntriesDate
+            entity.unvaccinatedEntriesDate  = duty.unvaccinatedEntriesDate
             
             PersistenceController.shared.saveContext()
         }

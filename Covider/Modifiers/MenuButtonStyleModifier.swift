@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Main Menu Button Style
 struct ButtonModifier: ViewModifier {
     let backgroundColor: Color
     

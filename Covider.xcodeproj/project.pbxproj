@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1C3F650026D12DED007861DF /* UIApplication+EndEditingAndHideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3F64FF26D12DED007861DF /* UIApplication+EndEditingAndHideKeyboard.swift */; };
+		1C571A3426D3F1190060ED31 /* OperationButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C571A3326D3F1190060ED31 /* OperationButtonStyle.swift */; };
+		1CD850E026D4076600808141 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD850DF26D4076600808141 /* LocationManager.swift */; };
+		1CD850E426D40E1000808141 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD850E326D40E1000808141 /* CloudKit.framework */; };
 		1CDE82B126D1006800340CDD /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDE82B026D1006800340CDD /* DetailView.swift */; };
 		1CEC381B26CFA066000A3617 /* CoviderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC381A26CFA066000A3617 /* CoviderApp.swift */; };
 		1CEC381D26CFA066000A3617 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC381C26CFA066000A3617 /* MainView.swift */; };
@@ -38,6 +41,10 @@
 
 /* Begin PBXFileReference section */
 		1C3F64FF26D12DED007861DF /* UIApplication+EndEditingAndHideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+EndEditingAndHideKeyboard.swift"; sourceTree = "<group>"; };
+		1C571A3326D3F1190060ED31 /* OperationButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationButtonStyle.swift; sourceTree = "<group>"; };
+		1CD850DF26D4076600808141 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		1CD850E126D40E0D00808141 /* Covider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Covider.entitlements; sourceTree = "<group>"; };
+		1CD850E326D40E1000808141 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		1CDE82B026D1006800340CDD /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		1CEC381726CFA066000A3617 /* Covider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Covider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CEC381A26CFA066000A3617 /* CoviderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoviderApp.swift; sourceTree = "<group>"; };
@@ -74,17 +81,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CD850E426D40E1000808141 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1CD850E226D40E1000808141 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1CD850E326D40E1000808141 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1CEC380E26CFA066000A3617 = {
 			isa = PBXGroup;
 			children = (
 				1CEC381926CFA066000A3617 /* Covider */,
 				1CEC381826CFA066000A3617 /* Products */,
+				1CD850E226D40E1000808141 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,6 +124,7 @@
 				1CEC383126CFA0C8000A3617 /* Models */,
 				1CEC382E26CFA07C000A3617 /* Extensions */,
 				1CEC382826CFA067000A3617 /* Info.plist */,
+				1CD850E126D40E0D00808141 /* Covider.entitlements */,
 				1CEC382026CFA067000A3617 /* Preview Content */,
 			);
 			path = Covider;
@@ -141,6 +159,7 @@
 		1CEC383426CFA0EA000A3617 /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				1C571A3326D3F1190060ED31 /* OperationButtonStyle.swift */,
 				1CEC383526CFA0F1000A3617 /* FormStyleModifier.swift */,
 				1CEC383726CFA0FD000A3617 /* MenuButtonStyleModifier.swift */,
 			);
@@ -181,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				1CEC384326CFA26E000A3617 /* DutyViewModel.swift */,
+				1CD850DF26D4076600808141 /* LocationManager.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -221,8 +241,8 @@
 		1CFC4BF126D2D6BC00B319C4 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
-				1CFC4BF826D2D94C00B319C4 /* LocalizedStrings.swift */,
 				1CFC4BF626D2D75D00B319C4 /* Localizable.strings */,
+				1CFC4BF826D2D94C00B319C4 /* LocalizedStrings.swift */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -301,6 +321,7 @@
 			files = (
 				1CEC382726CFA067000A3617 /* Covider.xcdatamodeld in Sources */,
 				1CEC383826CFA0FD000A3617 /* MenuButtonStyleModifier.swift in Sources */,
+				1CD850E026D4076600808141 /* LocationManager.swift in Sources */,
 				1CEC382426CFA067000A3617 /* Persistence.swift in Sources */,
 				1CEC381D26CFA066000A3617 /* MainView.swift in Sources */,
 				1CEC381B26CFA066000A3617 /* CoviderApp.swift in Sources */,
@@ -310,6 +331,7 @@
 				1CEC384426CFA26E000A3617 /* DutyViewModel.swift in Sources */,
 				1CEC383026CFA08B000A3617 /* String+SubstringIn.swift in Sources */,
 				1CDE82B126D1006800340CDD /* DetailView.swift in Sources */,
+				1C571A3426D3F1190060ED31 /* OperationButtonStyle.swift in Sources */,
 				1CEC385126CFA2D8000A3617 /* DutyCard.swift in Sources */,
 				1CEC384126CFA243000A3617 /* Duty+CoreDataProperties.swift in Sources */,
 				1CEC384F26CFA2C8000A3617 /* CarouselView.swift in Sources */,
@@ -461,6 +483,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Covider/Covider.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Covider/Preview Content\"";
 				DEVELOPMENT_TEAM = G6NTB33VYZ;
@@ -483,6 +506,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Covider/Covider.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Covider/Preview Content\"";
 				DEVELOPMENT_TEAM = G6NTB33VYZ;
