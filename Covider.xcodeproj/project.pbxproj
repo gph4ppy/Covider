@@ -29,7 +29,7 @@
 		1CEC384926CFA29B000A3617 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC384826CFA29B000A3617 /* HomeView.swift */; };
 		1CEC384B26CFA2AB000A3617 /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC384A26CFA2AB000A3617 /* SessionView.swift */; };
 		1CEC384D26CFA2BB000A3617 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC384C26CFA2BB000A3617 /* WelcomeView.swift */; };
-		1CEC384F26CFA2C8000A3617 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC384E26CFA2C8000A3617 /* CarouselView.swift */; };
+		1CEC384F26CFA2C8000A3617 /* WelcomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC384E26CFA2C8000A3617 /* WelcomePage.swift */; };
 		1CEC385126CFA2D8000A3617 /* DutyCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC385026CFA2D8000A3617 /* DutyCard.swift */; };
 		1CEC385326CFA2E5000A3617 /* DutySetupAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC385226CFA2E5000A3617 /* DutySetupAlert.swift */; };
 		1CEC385526CFA2ED000A3617 /* StopWatchUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC385426CFA2ED000A3617 /* StopWatchUnitView.swift */; };
@@ -65,7 +65,7 @@
 		1CEC384826CFA29B000A3617 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1CEC384A26CFA2AB000A3617 /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
 		1CEC384C26CFA2BB000A3617 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
-		1CEC384E26CFA2C8000A3617 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
+		1CEC384E26CFA2C8000A3617 /* WelcomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePage.swift; sourceTree = "<group>"; };
 		1CEC385026CFA2D8000A3617 /* DutyCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutyCard.swift; sourceTree = "<group>"; };
 		1CEC385226CFA2E5000A3617 /* DutySetupAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutySetupAlert.swift; sourceTree = "<group>"; };
 		1CEC385426CFA2ED000A3617 /* StopWatchUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchUnitView.swift; sourceTree = "<group>"; };
@@ -217,7 +217,7 @@
 		1CEC384626CFA287000A3617 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				1CEC384E26CFA2C8000A3617 /* CarouselView.swift */,
+				1CEC384E26CFA2C8000A3617 /* WelcomePage.swift */,
 				1CEC385026CFA2D8000A3617 /* DutyCard.swift */,
 				1CEC385226CFA2E5000A3617 /* DutySetupAlert.swift */,
 				1CEC385426CFA2ED000A3617 /* StopWatchUnitView.swift */,
@@ -334,7 +334,7 @@
 				1C571A3426D3F1190060ED31 /* OperationButtonStyle.swift in Sources */,
 				1CEC385126CFA2D8000A3617 /* DutyCard.swift in Sources */,
 				1CEC384126CFA243000A3617 /* Duty+CoreDataProperties.swift in Sources */,
-				1CEC384F26CFA2C8000A3617 /* CarouselView.swift in Sources */,
+				1CEC384F26CFA2C8000A3617 /* WelcomePage.swift in Sources */,
 				1CEC385326CFA2E5000A3617 /* DutySetupAlert.swift in Sources */,
 				1C3F650026D12DED007861DF /* UIApplication+EndEditingAndHideKeyboard.swift in Sources */,
 				1CEC384926CFA29B000A3617 /* HomeView.swift in Sources */,

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    @State var currentIndex: Int                                = 0
     @State var welcomeScreens: [WelcomeScreenModel]             = []
     @AppStorage("isFirstTime") private var isFirstTime: Bool    = true
     
@@ -20,49 +19,19 @@ struct WelcomeView: View {
                 .fontWeight(.semibold)
             
             // Carousel View with tutorial
-            CarouselView(index: $currentIndex, welcomeScreens: welcomeScreens) { screen in
-                GeometryReader { geom in
-                    let size = geom.size
-                    
-                    // Tutorial Views
-                    VStack(spacing: 4) {
-                        Spacer()
-                        
-                        screen.welcomeView
-                            .aspectRatio(contentMode: .fit)
-                            .padding()
-                        
-                        Spacer()
-                        
-                        Text(screen.title)
-                            .font(.largeTitle)
-                            .bold()
-                        
-                        ScrollView(.vertical, showsIndicators: false) {
-                            Text(screen.description)
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                                .multilineTextAlignment(.center)
-                        }
-                        .frame(width: size.width - 40,
-                               height: size.height / 3.5)
+            GeometryReader { geom in
+                TabView {
+                    ForEach(welcomeScreens, id: \.self) { screen in
+                        WelcomePage(welcomeView: AnyView(screen.welcomeView),
+                                    title: screen.title,
+                                    description: screen.description,
+                                    size: geom.size)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
-                    .frame(width: size.width)
-                    .aspectRatio(contentMode: .fill)
                 }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
             }
-            
-            // Indicator
-            HStack {
-                ForEach(welcomeScreens.indices, id: \.self) { index in
-                    Circle()
-                        .fill(Color.primary.opacity(currentIndex == index ? 1 : 0.2))
-                        .frame(width: 10, height: 10)
-                        .scaleEffect(currentIndex == index ? 1.4 : 1)
-                        .animation(.spring(), value: currentIndex == index)
-                }
-            }
-            .padding(.vertical)
             
             // Start using app button
             Button(action: { self.isFirstTime = false }) {
@@ -136,4 +105,3 @@ extension WelcomeView {
             .font(.system(size: 150, weight: .ultraLight, design: .default))
     }
 }
-

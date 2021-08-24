@@ -33,6 +33,10 @@ struct LocalizedStrings {
     public static let endSessionDescription = NSLocalizedString("end_session_description", comment: "")
     public static let goBack = NSLocalizedString("go_back", comment: "")
     public static let peopleInThisPlace = NSLocalizedString("people_in_this_place", comment: "")
+    
+    // MARK: - Timer Alert
+    public static let timerAlertTitle = NSLocalizedString("timer_alert_title", comment: "")
+    public static let timerAlertDescription = NSLocalizedString("timer_alert_description", comment: "")
 
     // MARK: - Detail View
     public static let allPeople = NSLocalizedString("all_people", comment: "")

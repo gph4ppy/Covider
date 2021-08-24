@@ -32,6 +32,10 @@
 "go_back" = "Go back";
 "people_in_this_place" = "people in this place";
 
+// MARK: - Timer Alert
+"timer_alert_title" = "Please, allow notifications";
+"timer_alert_description" = "After closing this alert, there will be another alert asking for permission to notify. Please, allow it - the app will not send you notifications. This is necessary for the stopwatch to count in the background, e.g. when a screen is locked. However, if it does not interfere you the inaccuracy of the session duration after locking the screen or you are sure that you will have the screen turned on all the time, ignore this notification and click the \"don't allow\" button in the next alert.";
+
 // MARK: - Detail View
 "all_people" = "All people";
 "guard" = "Guard";

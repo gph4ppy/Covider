@@ -8,13 +8,19 @@
 import SwiftUI
 import MapKit
 
+enum ActiveSessionAlert {
+    case confirmation
+    case notification
+}
+
 struct SessionView: View {
     @StateObject var locationManager                    = LocationManager()
     @State private var allPeopleCounter: Int            = 0
     @State private var vaccinatedCounter: Int           = 0
     @State private var unvaccinatedCounter: Int         = 0
     @State private var buttonSize: CGFloat              = 80
-    @State private var showingConfirmationAlert: Bool   = false
+    @State private var showingAlert: Bool               = false
+    @State private var activeAlert: ActiveSessionAlert  = .confirmation
     @State private var progressTime: Int                = 0
     @State private var allEntriesDate: [Date]           = []
     @State private var vaccinatedEntriesDate: [Date]    = []
@@ -29,7 +35,7 @@ struct SessionView: View {
     var body: some View {
         VStack {
             Spacer()
-
+            
             // Session View
             if divisionOfVaccinated {
                 viewWithDivision
@@ -43,14 +49,17 @@ struct SessionView: View {
             StopWatchView(progressTime: $progressTime)
             
             // End Session Button
-            Button(action: { self.showingConfirmationAlert = true }) {
+            Button(action: {
+                self.activeAlert = .confirmation
+                self.showingAlert = true
+            }) {
                 Text(LocalizedStrings.endSession)
                     .menuButtonStyle(background: Color(.red))
             }
         }
         .padding()
         .navigationBarBackButtonHidden(true)
-        .alert(isPresented: $showingConfirmationAlert, content: createAlert)
+        .alert(isPresented: $showingAlert, content: createAlert)
         .onAppear { self.buttonSize = divisionOfVaccinated ? 50 : 80 }
     }
 }
@@ -144,7 +153,6 @@ extension SessionView {
         }
         .font(.largeTitle)
         .padding(.vertical)
-        .shadow(radius: 5)
     }
     
     // A View which is shown when the user enabled the division of vaccinated.
