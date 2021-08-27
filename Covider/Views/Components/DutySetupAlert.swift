@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct DutySetupAlert: View {
-    @State private var title: String                = ""
-    @State private var guardName: String            = ""
-    @State private var placeName: String            = ""
-    @State private var vaccinatedDivision: Bool     = true
-    @State private var didStartSession: Bool        = false
+    @State private var title: String                                = ""
+    @State private var guardName: String                            = ""
+    @State private var placeName: String                            = ""
+    @State private var vaccinatedDivision: Bool                     = true
+    @State private var didStartSession: Bool                        = false
     @Binding var isVisible: Bool
     var isDisabled: Bool {
         title.isEmpty || guardName.isEmpty || placeName.isEmpty ? true : false

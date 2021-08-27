@@ -8,24 +8,23 @@
 import SwiftUI
 import MapKit
 
-enum ActiveSessionAlert {
-    case confirmation
-    case notification
-}
-
+// MARK: - TO DO: REFACTORING!!!! -
 struct SessionView: View {
-    @StateObject var locationManager                    = LocationManager()
-    @State private var allPeopleCounter: Int            = 0
-    @State private var vaccinatedCounter: Int           = 0
-    @State private var unvaccinatedCounter: Int         = 0
-    @State private var buttonSize: CGFloat              = 80
-    @State private var showingAlert: Bool               = false
-    @State private var activeAlert: ActiveSessionAlert  = .confirmation
-    @State private var progressTime: Int                = 0
-    @State private var allEntriesDate: [Date]           = []
-    @State private var vaccinatedEntriesDate: [Date]    = []
-    @State private var unvaccinatedEntriesDate: [Date]  = []
+    @StateObject var locationManager: LocationManager               = LocationManager()
+    @State private var allPeopleCounter: Int                        = 0
+    @State private var vaccinatedCounter: Int                       = 0
+    @State private var unvaccinatedCounter: Int                     = 0
+    @State private var allPeopleSum: Int                            = 0
+    @State private var allVaccinatedSum: Int                        = 0
+    @State private var allUnvaccinatedSum: Int                      = 0
+    @State private var buttonSize: CGFloat                          = 80
+    @State private var showingAlert: Bool                           = false
+    @State private var progressTime: Int                            = 0
+    @State private var allEntriesDate: [Date]                       = []
+    @State private var vaccinatedEntriesDate: [Date]                = []
+    @State private var unvaccinatedEntriesDate: [Date]              = []
     @Environment(\.presentationMode) private var presentationMode
+    @Environment(\.colorScheme) private var colorScheme
     var title: String
     var place: String
     var guardName: String
@@ -50,7 +49,6 @@ struct SessionView: View {
             
             // End Session Button
             Button(action: {
-                self.activeAlert = .confirmation
                 self.showingAlert = true
             }) {
                 Text(LocalizedStrings.endSession)
@@ -59,8 +57,8 @@ struct SessionView: View {
         }
         .padding()
         .navigationBarBackButtonHidden(true)
-        .alert(isPresented: $showingAlert, content: createAlert)
         .onAppear { self.buttonSize = divisionOfVaccinated ? 50 : 80 }
+        .alert(isPresented: $showingAlert, content: createAlert)
     }
 }
 
@@ -73,13 +71,13 @@ extension SessionView {
         
         let duty = DutyViewModel(title: self.title,
                                  place: self.place,
-                                 allPeople: Int32(self.allPeopleCounter),
+                                 allPeople: Int32(self.allPeopleSum),
                                  guardName: self.guardName,
                                  startDate: self.startDate,
                                  endDate: Date(),
                                  divisionOfVaccinated: self.divisionOfVaccinated,
-                                 vaccinatedCount: Int32(self.vaccinatedCounter),
-                                 unvaccinatedCount: Int32(self.unvaccinatedCounter),
+                                 vaccinatedCount: Int32(self.allVaccinatedSum),
+                                 unvaccinatedCount: Int32(self.allUnvaccinatedSum),
                                  allEntriesDate: self.allEntriesDate,
                                  vaccinatedEntriesDate: self.vaccinatedEntriesDate,
                                  unvaccinatedEntriesDate: self.unvaccinatedEntriesDate,
@@ -146,7 +144,11 @@ extension SessionView {
             Spacer()
             
             // Plus button
-            Button(action: { add(to: &allPeopleCounter) }) {
+            Button(action: {
+                add(to: &allPeopleCounter)
+                self.allPeopleSum += 1
+                allEntriesDate.append(Date())
+            }) {
                 Image(systemName: "plus")
                     .operationButtonStyle(size: buttonSize, color: .green)
             }
@@ -182,9 +184,16 @@ extension SessionView {
             
             // Vaccinated Counter
             VStack(spacing: 20) {
-                Image("vaccine_positive")
-                    .resizable()
-                    .frame(width: 60, height: 60)
+                if colorScheme == .dark {
+                    Image("vaccine_positive")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .colorInvert()
+                } else {
+                    Image("vaccine_positive")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                }
                 
                 Text(String(vaccinatedCounter))
                     .bold()
@@ -200,9 +209,16 @@ extension SessionView {
             
             // Unvaccinated Counter
             VStack(spacing: 20) {
-                Image("vaccine_negative")
-                    .resizable()
-                    .frame(width: 60, height: 60)
+                if colorScheme == .dark {
+                    Image("vaccine_negative")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .colorInvert()
+                } else {
+                    Image("vaccine_negative")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                }
                 
                 Text(String(unvaccinatedCounter))
                     .bold()
@@ -213,13 +229,12 @@ extension SessionView {
         .padding(.horizontal)
         
         // Increment and decrement buttons
+        // MARK: - Vaccinated
         HStack {
             // Minus button
             Button(action: {
-                let hapticMinus = UIImpactFeedbackGenerator(style: .soft)
-                hapticMinus.impactOccurred()
-                self.allPeopleCounter -= self.vaccinatedCounter > 0 ? 1 : 0
-                self.vaccinatedCounter -= self.vaccinatedCounter > 0 ? 1 : 0
+                if vaccinatedCounter != 0 { subtract(from: &allPeopleCounter) }
+                subtract(from: &vaccinatedCounter)
             }, label: {
                 Image(systemName: "minus")
                     .operationButtonStyle(size: buttonSize, color: .red)
@@ -235,10 +250,15 @@ extension SessionView {
             
             // Plus button
             Button(action: {
-                let hapticPlus = UIImpactFeedbackGenerator(style: .light)
-                hapticPlus.impactOccurred()
-                self.allPeopleCounter += 1
-                self.vaccinatedCounter += 1
+                add(to: &allPeopleCounter)
+                add(to: &vaccinatedCounter)
+                
+                self.allPeopleSum += 1
+                self.allVaccinatedSum += 1
+                
+                let date = Date()
+                allEntriesDate.append(date)
+                vaccinatedEntriesDate.append(date)
             }, label: {
                 Image(systemName: "plus")
                     .operationButtonStyle(size: buttonSize, color: .green)
@@ -247,13 +267,12 @@ extension SessionView {
         .padding(.vertical)
         .font(.largeTitle)
         
+        // MARK: - Unvaccinated
         HStack {
             // Minus button
             Button(action: {
-                let hapticMinus = UIImpactFeedbackGenerator(style: .soft)
-                hapticMinus.impactOccurred()
-                self.allPeopleCounter -= self.unvaccinatedCounter > 0 ? 1 : 0
-                self.unvaccinatedCounter -= self.unvaccinatedCounter > 0 ? 1 : 0
+                if unvaccinatedCounter != 0 { subtract(from: &allPeopleCounter) }
+                subtract(from: &unvaccinatedCounter)
             }, label: {
                 Image(systemName: "minus")
                     .operationButtonStyle(size: buttonSize, color: .red)
@@ -269,10 +288,15 @@ extension SessionView {
             
             // Plus button
             Button(action: {
-                let hapticPlus = UIImpactFeedbackGenerator(style: .light)
-                hapticPlus.impactOccurred()
-                self.allPeopleCounter += 1
-                self.unvaccinatedCounter += 1
+                add(to: &allPeopleCounter)
+                add(to: &unvaccinatedCounter)
+                
+                self.allPeopleSum += 1
+                self.allUnvaccinatedSum += 1
+                
+                let date = Date()
+                allEntriesDate.append(date)
+                unvaccinatedEntriesDate.append(date)
             }, label: {
                 Image(systemName: "plus")
                     .operationButtonStyle(size: buttonSize, color: .green)

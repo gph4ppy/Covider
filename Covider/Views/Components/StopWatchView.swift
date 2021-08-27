@@ -75,3 +75,39 @@ struct StopWatchView: View {
         start()
     }
 }
+
+//class NotificationManager: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
+//    private let notificationManager = UNUserNotificationCenter.current()
+//    @Published var notificationStatus: UNAuthorizationStatus?
+//    
+//    override init() {
+//        super.init()
+//        notificationManager.delegate = self
+//        NotificationManager.requestNotificationPermission()
+//    }
+//    
+//    public static func requestNotificationPermission() {
+//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+//            if success {
+//                print("All set!")
+//            } else if let error = error {
+//                print(error.localizedDescription)
+//            }
+//        }
+//    }
+//    
+//    var statusString: String {
+//        guard let status = notificationStatus else {
+//            return "unknown"
+//        }
+//        
+//        switch status {
+//            case .notDetermined: return "notDetermined"
+//            case .authorized: return "authorized"
+//            case .ephemeral: return "ephemeral"
+//            case .provisional: return "provisional"
+//            case .denied: return "denied"
+//            default: return "unknown"
+//        }
+//    }
+//}

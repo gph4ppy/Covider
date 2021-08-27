@@ -18,27 +18,32 @@ struct HomeView: View {
         animation: .default
     ) private var duties: FetchedResults<Duty>
     
+    // I use the overlay variable because the opacity change
+    // using the ternary operator in the .overlay modifier, for some reason,
+    // disabled the functionality of the application in dark mode
+    // (the ToolbarItems did not work).
+    var overlay: some View {
+        Color.primary
+            .opacity(0.4)
+            .ignoresSafeArea()
+    }
+    
     var body: some View {
         ZStack {
             NavigationView {
                 listView
                     .navigationBarTitle(LocalizedStrings.duties)
                     .toolbar(content: createToolbar)
+                    .navigationViewStyle(StackNavigationViewStyle())
             }
-            .navigationViewStyle(StackNavigationViewStyle())
             .blur(radius: showingSetupForm ? 3 : 0)
-            .overlay(
-                Color.primary
-                    .opacity(showingSetupForm ? 0.4 : 0)
-                    .ignoresSafeArea()
-            )
+            .overlay(showingSetupForm ? overlay : nil)
             
             // Setup Alert
             DutySetupAlert(isVisible: $showingSetupForm)
                 .offset(y: showingSetupForm ? 0 : UIScreen.main.bounds.height)
                 .ignoresSafeArea()
         }
-        .onAppear { self.showingSetupForm = false }
     }
 }
 

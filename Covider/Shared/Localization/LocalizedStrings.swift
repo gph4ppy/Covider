@@ -15,12 +15,14 @@ struct LocalizedStrings {
     public static let thePurpose = NSLocalizedString("the_purpose", comment: "")
     public static let headInTheClouds = NSLocalizedString("head_in_the_clouds", comment: "")
     public static let youAreInControl = NSLocalizedString("you_are_in_control", comment: "")
+    public static let permissions = NSLocalizedString("permissions", comment: "")
     public static let ready = NSLocalizedString("ready", comment: "")
     public static let welcomeScreenDescription1 = NSLocalizedString("welcome_screen_description_1", comment: "")
     public static let welcomeScreenDescription2 = NSLocalizedString("welcome_screen_description_2", comment: "")
     public static let welcomeScreenDescription3 = NSLocalizedString("welcome_screen_description_3", comment: "")
     public static let welcomeScreenDescription4 = NSLocalizedString("welcome_screen_description_4", comment: "")
     public static let welcomeScreenDescription5 = NSLocalizedString("welcome_screen_description_5", comment: "")
+    public static let welcomeScreenDescription6 = NSLocalizedString("welcome_screen_description_6", comment: "")
     public static let emptyList = NSLocalizedString("empty_list", comment: "")
     
     // MARK: - Home View
@@ -34,9 +36,13 @@ struct LocalizedStrings {
     public static let goBack = NSLocalizedString("go_back", comment: "")
     public static let peopleInThisPlace = NSLocalizedString("people_in_this_place", comment: "")
     
-    // MARK: - Timer Alert
-    public static let timerAlertTitle = NSLocalizedString("timer_alert_title", comment: "")
-    public static let timerAlertDescription = NSLocalizedString("timer_alert_description", comment: "")
+    // MARK: - Permissions
+    public static let location = NSLocalizedString("location", comment: "")
+    public static let notifications = NSLocalizedString("notifications", comment: "")
+    public static let notificationPermissionTitle = NSLocalizedString("notification_permission_title", comment: "")
+    public static let notificationPermissionDescription = NSLocalizedString("notification_permission_description", comment: "")
+    public static let locationPermissionTitle = NSLocalizedString("location_permission_title", comment: "")
+    public static let locationPermissionDescription = NSLocalizedString("location_permission_description", comment: "")
 
     // MARK: - Detail View
     public static let allPeople = NSLocalizedString("all_people", comment: "")

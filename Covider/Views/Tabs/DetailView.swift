@@ -56,27 +56,37 @@ struct DetailView: View {
             .padding(.horizontal)
             
             // Chart
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(startHour..<(endHour + Int.random(in: 1...24))) { hour in
-                        let random = Int.random(in: 2...300)
-                        VStack {
-                            Spacer()
-                            
-                            Text(String(random))
-                                .font(.footnote)
-                                .rotationEffect(.degrees(-90))
-                                .offset(y: 35)
-                                .zIndex(1)
-                                .offset(y: random > 60 ? 0 : -35)
-                            
-                            RoundedRectangle(cornerRadius: 4)
-                                .fill(Color.blue)
-                                .frame(width: 30, height: CGFloat(random) * 0.5)
-                            
-                            Text(String(hour > 24 ? hour - 24 : hour))
-                                .font(.footnote)
-                                .frame(height: 20)
+            VStack {
+                Text("Entries Chart")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(startHour..<(endHour + Int.random(in: 1...24))) { hour in
+                            let random = Int.random(in: 2...300)
+                            var filteredDates: [Int] = []
+                            VStack {
+                                Spacer()
+                                
+                                Text(String(random))
+                                    .font(.footnote)
+                                    .rotationEffect(.degrees(-90))
+                                    .offset(y: 35)
+                                    .zIndex(1)
+                                    .offset(y: random > 60 ? 0 : -35)
+                                
+                                RoundedRectangle(cornerRadius: 4)
+                                    .fill(Color.blue)
+                                    .frame(width: 30, height: CGFloat(random) * 0.5)
+                                
+                                Text(String(hour > 24 ? hour - 24 : hour))
+                                    .font(.footnote)
+                                    .frame(height: 20)
+                            }
+                            .onAppear {
+                                // MARK: - Dates
+                            }
                         }
                     }
                 }

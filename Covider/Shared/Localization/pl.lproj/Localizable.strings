@@ -13,12 +13,14 @@
 "the_purpose" = "Cel";
 "head_in_the_clouds" = "Z głową w chmurach?";
 "you_are_in_control" = "Masz kontrolę";
+"permissions" = "Uprawnienia";
 "ready" = "Gotowy?";
 "welcome_screen_description_1" = "Przewiń w lewo lub w prawo, aby poruszać się po poradniku.";
 "welcome_screen_description_2" = "Covider jest prostą aplikacją, która ułatwia pracę ochroniarzy w pilnowaniu miejsc, gdzie niezbędne jest liczenie ludzi.";
 "welcome_screen_description_3" = "Dzięki Covider nie musisz pamiętać ile osób weszło - wszystkie wyświetla się na ekranie! A jak już mowa o chmurach... Czy wiedziałeś, że Twoje służby są zapisywane nie tylko lokalnie, lecz również w iCloud, dzięki czemu dane są synchronizowane na Twoich wszystkich urządzeniach?";
 "welcome_screen_description_4" = "To Ty decydujesz kiedy wciśniesz przycisk dodawania lub odejmowania. Wcisnąłeś przez przypadek przycisk? Nie ma problemu - przyciski są duże, lecz dzięki wibracjom zawsze będziesz wiedział, kiedy je wciskasz.";
-"welcome_screen_description_5" = "To koniec tego szybkiego poradnika. Tak, to takie proste! Nie potrzebujesz niczego więcej - Covider zajmie się tym wszystkim za ciebie. Jedyne co musisz zrobić to wcisnąć ten piękny zielony przycisk poniżej...";
+"welcome_screen_description_5" = "Ta aplikacja działa lepiej z powyższymi uprawnieniami. Proszę, przełącz powyższe przełączniki i udziel zezwolenia, aby w pełni korzystać z możliwości aplikacji. Twoja lokalizacja nie zostaje mi udostępniona oraz nie będę Cię męczyć powiadomieniami.";
+"welcome_screen_description_6" = "To koniec tego szybkiego poradnika. Tak, to takie proste! Nie potrzebujesz niczego więcej - Covider zajmie się tym wszystkim za ciebie. Jedyne co musisz zrobić to wcisnąć ten piękny zielony przycisk poniżej...";
 "empty_list" = "Oh nie! Nie posiadasz zapisanych służb. Wciśnij przycisk w prawym górnym rogu, aby dodać nową służbę.";
 
 // MARK: - Home View
@@ -32,9 +34,13 @@
 "go_back" = "Cofnij";
 "people_in_this_place" = "ludzi w tym miejscu";
 
-// MARK: - Timer Alert
-"timer_alert_title" = "Proszę, zezwól na powiadomienia";
-"timer_alert_description" = "Po zamknięciu tego okna pojawi się alert z prośbą o zezwolenie na powiadomienia. Proszę, zezwól na nie - aplikacja nie będzie wysyłać Tobie powiadomień. Jest to niezbędne, aby stoper liczył czas w tle, np. przy zablokowanym ekranie. Jeśli jednak nie przeszkadza Ci niedokładność czasu trwania sesji po zablokowaniu ekranu lub jesteś pewny, że będziesz mieć cały czas włączony ekran, zignoruj to powiadomienie i nie zezwalaj na wysyłanie powiadomień.";
+// MARK: - Permissions
+"location" = "Lokalizacja";
+"notifications" = "Powiadomienia";
+"notification_permission_title" = "Proszę, zezwól na powiadomienia";
+"notification_permission_description" = "Po wciśnięciu przycisku rozpoczęcia służby pojawi się alert z prośbą o zezwolenie na powiadomienia. Proszę, udziel na nie zgody - aplikacja nie będzie wysyłać Tobie powiadomień. Jest to niezbędne, aby stoper liczył czas w tle, np. przy zablokowanym ekranie. Jeśli jednak nie przeszkadza Ci niedokładność czasu trwania sesji po zablokowaniu ekranu lub jesteś pewny, że będziesz mieć cały czas włączony ekran, zignoruj to powiadomienie i nie zezwalaj na wysyłanie powiadomień.";
+"location_permission_title" = "Proszę, zezwól na lokalizację";
+"location_permission_description" = "Po wciśnięciu przycisku rozpoczęcia służby pojawi się alert z prośbą o zezwolenie na powiadomienia. Proszę, udziel na nie zgody - aplikacja nie będzie wysyłać Tobie powiadomień. Jest to niezbędne, aby stoper liczył czas w tle, np. przy zablokowanym ekranie. Jeśli jednak nie przeszkadza Ci niedokładność czasu trwania sesji po zablokowaniu ekranu lub jesteś pewny, że będziesz mieć cały czas włączony ekran, zignoruj to powiadomienie i nie zezwalaj na wysyłanie powiadomień.";
 
 // MARK: - Detail View
 "all_people" = "Wszyscy ludzie";
@@ -52,4 +58,4 @@
 "place" = "Miejsce";
 "vaccinated_division" = "Podział na zaszczepionych";
 "cancel" = "Anuluj";
-"start_duty" = "Rozpocznij służbę";
+"start_duty" = "Rozpocznij";

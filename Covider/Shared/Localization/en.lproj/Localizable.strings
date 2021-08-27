@@ -13,12 +13,14 @@
 "the_purpose" = "The purpose";
 "head_in_the_clouds" = "Head in the clouds?";
 "you_are_in_control" = "You are in control";
+"permissions" = "Permissions";
 "ready" = "Ready?";
 "welcome_screen_description_1" = "Swipe to the left or right to move around the tutorial.";
 "welcome_screen_description_2" = "Covider is a simple application that facilitates the work of security guards to watch places where counting entering people is necessary.";
 "welcome_screen_description_3" = "With Covider, you don't have to remember how many people have entered - it's all on the screen! Speaking of clouds... Did you know that your duties are saved not only locally but also in iCloud, so they stay in sync across all your devices?";
 "welcome_screen_description_4" = "You decide when you press the add or subtract button. Did you tap the screen by accident? No problem - the buttons are large, but thanks to the haptic vibrations, you always know when you press them.";
-"welcome_screen_description_5" = "This is the end of the quick tutorial. Yes, it's that simple! You don't need anything else - Covider will take care of it all for you. All you have to do is press that beautiful green button below...";
+"welcome_screen_description_5" = "This app works better with the above permissions. Please, switch the above toggles and permit to take full advantage of the application options. Your location will not be shared and I will not tire you with notifications.";
+"welcome_screen_description_6" = "This is the end of the quick tutorial. Yes, it's that simple! You don't need anything else - Covider will take care of it all for you. All you have to do is press that beautiful green button below...";
 "empty_list" = "Oh no! You do not have saved duties. Press the button in the upper right corner to add a new duty.";
 
 // MARK: - Home View
@@ -32,9 +34,13 @@
 "go_back" = "Go back";
 "people_in_this_place" = "people in this place";
 
-// MARK: - Timer Alert
-"timer_alert_title" = "Please, allow notifications";
-"timer_alert_description" = "After closing this alert, there will be another alert asking for permission to notify. Please, allow it - the app will not send you notifications. This is necessary for the stopwatch to count in the background, e.g. when a screen is locked. However, if it does not interfere you the inaccuracy of the session duration after locking the screen or you are sure that you will have the screen turned on all the time, ignore this notification and click the \"don't allow\" button in the next alert.";
+// MARK: - Permissions
+"location" = "Location";
+"notifications" = "Notifications";
+"notification_permission_title" = "Please, allow notifications";
+"notification_permission_description" = "After tapping the \"Start Duty\" button, an alert asking for permission to notify will be displayed. Please, allow it - the app will not send you notifications. This is necessary for the stopwatch to count in the background, e.g. when a screen is locked. However, if it does not interfere you the inaccuracy of the session duration after locking the screen or you are sure that you will have the screen turned on all the time, ignore this notification and click the \"don't allow\" button in the next alert.";
+"location_permission_title" = "Please, allow location";
+"location_permission_description" = "After tapping the \"Start Duty\" button, an alert asking for permission to notify will be displayed. Please, allow it - the app will not send you notifications. This is necessary for the stopwatch to count in the background, e.g. when a screen is locked. However, if it does not interfere you the inaccuracy of the session duration after locking the screen or you are sure that you will have the screen turned on all the time, ignore this notification and click the \"don't allow\" button in the next alert.";
 
 // MARK: - Detail View
 "all_people" = "All people";
