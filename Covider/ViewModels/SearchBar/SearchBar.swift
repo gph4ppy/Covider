@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class SearchBar: NSObject, ObservableObject {
+final class SearchBar: NSObject, ObservableObject {
     @Published var text: String = ""
     let searchController = UISearchController(searchResultsController: nil)
     

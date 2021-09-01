@@ -29,7 +29,7 @@ struct DutyViewModel {
     
     /// This method saves the duty to the context.
     /// - Parameter duty: A parameter of DutyViewModel type, which contains the data to save.
-    static public func saveDuty(_ duty: DutyViewModel) {
+    public static func saveDuty(_ duty: DutyViewModel) {
         withAnimation {
             let persistenceContainer = PersistenceController.shared.container
             let entity = Duty(context: persistenceContainer.viewContext)

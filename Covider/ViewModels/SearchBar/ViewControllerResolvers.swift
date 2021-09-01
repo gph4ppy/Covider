@@ -18,10 +18,11 @@ final class ViewControllerResolver: UIViewControllerRepresentable {
         ParentResolverViewController(onResolve: onResolve)
     }
     
-    func updateUIViewController(_ uiViewController: ParentResolverViewController, context: Context) { }
+    func updateUIViewController(_ uiViewController: ParentResolverViewController, context: Context) {
+    }
 }
 
-class ParentResolverViewController: UIViewController {
+final class ParentResolverViewController: UIViewController {
     let onResolve: (UIViewController) -> Void
     
     init(onResolve: @escaping (UIViewController) -> Void) {

@@ -9,97 +9,129 @@ import SwiftUI
 import CoreLocation
 
 struct PermissionView: View {
-    @AppStorage("isFirstLocation") var isFirstLocation: Bool            = true
-    @AppStorage("isFirstNotification") var isFirstNotification: Bool    = true
-    @State var locationToggle: Bool                                     = false
-    @State var notificationToggle: Bool                                 = false
-    @State var showingAlert: Bool                                       = false
-    @State var notificationStatus: UNAuthorizationStatus                = .notDetermined
+    @StateObject private var locationManager: LocationManager       = LocationManager()
+    @State private var locationToggle: Bool                         = false
+    @State private var notificationToggle: Bool                     = false
+    @State private var showingAlert: Bool                           = false
+    @State private var notificationStatus: UNAuthorizationStatus    = .notDetermined
     
     var body: some View {
-        let locationStatus = CLLocationManager().authorizationStatus
+        // Toggle Conditions
+        let locationCondition: Binding<Bool> = {
+            locationManager.locationStatus == .notDetermined ? $locationToggle : .constant(locationToggle)
+        }()
+        let notificationCondition: Binding<Bool> = {
+            notificationStatus == .notDetermined ?
+            $notificationToggle : .constant(notificationToggle)
+        }()
         
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 10) {
-                Toggle(
-                    LocalizedStrings.location,
-                    isOn: isFirstLocation || locationStatus == .notDetermined ?
-                    $locationToggle : .constant(locationToggle)
-                )
+                // Location Toggle
+                Toggle(LocalizedStrings.location, isOn: locationCondition)
                     .padding(.trailing, 2)
-                    .foregroundColor(setToggleTitleColor(locationStatus: CLLocationManager().authorizationStatus))
+                    .foregroundColor(
+                        setToggleTitleColor(locationStatus: self.locationManager.locationStatus)
+                    )
                 
+                // Location Description
                 DisclosureGroup(LocalizedStrings.locationPermissionTitle) {
                     Text(LocalizedStrings.locationPermissionDescription)
-                        .font(.footnote)
-                        .fontWeight(.regular)
-                        .multilineTextAlignment(.leading)
+                        .disclosureGroupText()
                 }
                 .font(.subheadline.bold())
                 
                 Divider()
                     .padding()
                 
-                Toggle(
-                    LocalizedStrings.notifications,
-                    isOn: isFirstNotification || notificationStatus == .notDetermined ?
-                    $notificationToggle : .constant(notificationToggle)
-                )
+                // Notifications Toggle
+                Toggle(LocalizedStrings.notifications, isOn: notificationCondition)
                     .padding(.trailing, 2)
-                    .foregroundColor(setToggleTitleColor(notificationStatus: self.notificationStatus))
+                    .foregroundColor(
+                        setToggleTitleColor(notificationStatus: self.notificationStatus)
+                    )
                 
+                // Notification Description
                 DisclosureGroup(LocalizedStrings.notificationPermissionTitle) {
                     Text(LocalizedStrings.notificationPermissionDescription)
-                        .font(.footnote)
-                        .fontWeight(.regular)
-                        .multilineTextAlignment(.leading)
+                        .disclosureGroupText()
                 }
                 .font(.subheadline.bold())
             }
         }
         .padding(.horizontal, 30)
         .frame(width: UIScreen.main.bounds.width - 60)
-        .alert(isPresented: $showingAlert) {
-            Alert(title: Text("The decision has been made"),
-                  message: Text("You can always change these settings by going to the Settings -> Covider."),
-                  dismissButton: .default(Text("OK"), action: {
-                withAnimation {
-                    switch CLLocationManager().authorizationStatus {
-                        case .authorizedAlways, .authorizedWhenInUse: self.locationToggle = true
-                        case .denied, .restricted, .notDetermined: self.locationToggle = false
-                        @unknown default: fatalError("Unknown location status")
-                    }
-                }
-                
-                self.isFirstLocation = false
-            }))
-        }
-        .onChange(of: locationToggle) { value in
-            // Request Authorization (init)
-            let manager = LocationManager()
-            manager.locationManager.requestWhenInUseAuthorization()
-            
-            self.showingAlert = true
-        }
+        .onChange(of: locationToggle, perform: requestLocation)
+        .onChange(of: locationManager.locationStatus, perform: setLocationToggle)
         .onChange(of: notificationToggle, perform: requestNotifications)
-        .onAppear {
-            let isLocationGranted = locationStatus == .authorizedWhenInUse ? true : false
-            self.locationToggle = isLocationGranted
-            
-            let center = UNUserNotificationCenter.current()
-            center.getNotificationSettings { permissions in
-                self.notificationStatus = permissions.authorizationStatus
-                
-                let isNotificationGranted = permissions.authorizationStatus == .authorized || permissions.authorizationStatus == .provisional || permissions.authorizationStatus == .ephemeral ? true : false
-                self.notificationToggle = isNotificationGranted
+        .onAppear(perform: assignToggleValues)
+    }
+}
+
+// MARK: - Location Methods
+private extension PermissionView {
+    /// This method asks the user for permission to download the current location.
+    func requestLocation(_:Bool) {
+        self.locationManager.locationManager.requestWhenInUseAuthorization()
+    }
+    
+    /// This method sets the toggle value based on the location authorization status.
+    /// - Parameter status: [Optional] Status of location authorization
+    func setLocationToggle(status: CLAuthorizationStatus?) {
+        if let status = status {
+            withAnimation {
+                switch status {
+                case .authorizedAlways, .authorizedWhenInUse: self.locationToggle = true
+                case .denied, .restricted, .notDetermined: self.locationToggle = false
+                @unknown default: fatalError("Unknown location status")
+                }
             }
         }
     }
-    
-    /// This method sets a toggle value based on authorization status.
-    /// - Parameter manager: NotificationManager from which the status will be gathered
-    private func setNotificationToggle(with manager: NotificationManager) {
-        self.notificationToggle = notificationStatus == .authorized ? true : false
+}
+
+// MARK: - Notifications Methods
+private extension PermissionView {
+    /// This method asks the user for permission to send notifications.
+    func requestNotifications(_:Bool) {
+        let manager = NotificationManager()
+        
+        // Request notification permission
+        manager.requestNotificationPermission {
+            // The user has allowed notifications.
+            // Set toggle value to true, status to .authorized and label color to the green.
+            self.notificationToggle = true
+            self.notificationStatus = .authorized
+            print("Notifications granted")
+        } failure: {
+            // The user has denied notifications.
+            // Set toggle to value true, status to .authorized and label color to the green.
+            self.notificationToggle = false
+            self.notificationStatus = .denied
+            print("Notifications denied")
+        }
+    }
+}
+
+// MARK: - General Methods
+private extension PermissionView {
+    /// This method restores the values of the toggles after restarting the application.
+    func assignToggleValues() {
+        let isLocationGranted = locationManager.locationStatus == .authorizedWhenInUse ? true : false
+        self.locationToggle = isLocationGranted
+        
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings { permissions in
+            self.notificationStatus = permissions.authorizationStatus
+            
+            let isAuthorized = permissions.authorizationStatus == .authorized
+            let isProvisional = permissions.authorizationStatus == .provisional
+            let isEphemeral = permissions.authorizationStatus == .ephemeral
+            
+            let isNotificationGranted = isAuthorized || isProvisional || isEphemeral ? true : false
+            
+            self.notificationToggle = isNotificationGranted
+        }
     }
     
     /// This method changes the color of the label next to the toggle depending on the permissions.
@@ -108,6 +140,7 @@ struct PermissionView: View {
     ///   - notificationStatus: [Optional] Status of notification authorization
     /// - Returns: A Color that will be used as a label text color next to the switch.
     func setToggleTitleColor(locationStatus: CLAuthorizationStatus? = nil, notificationStatus: UNAuthorizationStatus? = nil) -> Color {
+        // Set the location label color
         if let locationStatus = locationStatus {
             switch locationStatus {
                 case .authorizedWhenInUse, .authorizedAlways: return .green
@@ -117,31 +150,16 @@ struct PermissionView: View {
             }
         }
         
+        // Set the notifications label color
         if let notificationStatus = notificationStatus {
             switch notificationStatus {
                 case .authorized, .provisional, .ephemeral: return .green
                 case .denied: return .red
                 case .notDetermined: return .primary
-                @unknown default: fatalError("Unknown location status")
+                @unknown default: fatalError("Unknown notification status")
             }
         }
         
         return .primary
-    }
-    
-    func requestNotifications(_:Bool) {
-        let manager = NotificationManager()
-        
-        manager.requestNotificationPermission {
-            self.notificationToggle = true
-            self.notificationStatus = .authorized
-            print("Notifications granted")
-        } failure: { error in
-            self.notificationToggle = false
-            self.notificationStatus = .denied
-            print(error.localizedDescription)
-        }
-
-        self.isFirstNotification = false
     }
 }

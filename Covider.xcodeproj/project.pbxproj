@@ -9,9 +9,11 @@
 /* Begin PBXBuildFile section */
 		1C3F650026D12DED007861DF /* UIApplication+EndEditingAndHideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3F64FF26D12DED007861DF /* UIApplication+EndEditingAndHideKeyboard.swift */; };
 		1C571A3426D3F1190060ED31 /* OperationButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C571A3326D3F1190060ED31 /* OperationButtonStyle.swift */; };
+		1C57DB9926DFE6D100703FEC /* WelcomeView+WelcomeViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57DB9826DFE6D100703FEC /* WelcomeView+WelcomeViews.swift */; };
 		1C64BF6326DBAC6E009E89CB /* PermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C64BF6226DBAC6E009E89CB /* PermissionView.swift */; };
 		1C7823CE26D92FA000AF4BF1 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7823CD26D92FA000AF4BF1 /* SearchBar.swift */; };
 		1C7823D226D9301C00AF4BF1 /* SearchBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7823D126D9301C00AF4BF1 /* SearchBarModifier.swift */; };
+		1C9914A526DFA94300AF1176 /* DisclosureGroupText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9914A426DFA94300AF1176 /* DisclosureGroupText.swift */; };
 		1CD850E026D4076600808141 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD850DF26D4076600808141 /* LocationManager.swift */; };
 		1CD850E426D40E1000808141 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD850E326D40E1000808141 /* CloudKit.framework */; };
 		1CDE82B126D1006800340CDD /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDE82B026D1006800340CDD /* DetailView.swift */; };
@@ -47,9 +49,11 @@
 /* Begin PBXFileReference section */
 		1C3F64FF26D12DED007861DF /* UIApplication+EndEditingAndHideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+EndEditingAndHideKeyboard.swift"; sourceTree = "<group>"; };
 		1C571A3326D3F1190060ED31 /* OperationButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationButtonStyle.swift; sourceTree = "<group>"; };
+		1C57DB9826DFE6D100703FEC /* WelcomeView+WelcomeViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WelcomeView+WelcomeViews.swift"; sourceTree = "<group>"; };
 		1C64BF6226DBAC6E009E89CB /* PermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionView.swift; sourceTree = "<group>"; };
 		1C7823CD26D92FA000AF4BF1 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		1C7823D126D9301C00AF4BF1 /* SearchBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarModifier.swift; sourceTree = "<group>"; };
+		1C9914A426DFA94300AF1176 /* DisclosureGroupText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureGroupText.swift; sourceTree = "<group>"; };
 		1CD850DF26D4076600808141 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		1CD850E126D40E0D00808141 /* Covider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Covider.entitlements; sourceTree = "<group>"; };
 		1CD850E326D40E1000808141 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -98,6 +102,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C57DB9A26DFE6DF00703FEC /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1C3F64FF26D12DED007861DF /* UIApplication+EndEditingAndHideKeyboard.swift */,
+				1CEC382F26CFA08B000A3617 /* String+SubstringIn.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		1C57DB9B26DFE6E600703FEC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1C57DB9826DFE6D100703FEC /* WelcomeView+WelcomeViews.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		1C7823CC26D92F8900AF4BF1 /* SearchBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,8 +181,8 @@
 		1CEC382E26CFA07C000A3617 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				1C3F64FF26D12DED007861DF /* UIApplication+EndEditingAndHideKeyboard.swift */,
-				1CEC382F26CFA08B000A3617 /* String+SubstringIn.swift */,
+				1C57DB9B26DFE6E600703FEC /* Views */,
+				1C57DB9A26DFE6DF00703FEC /* Data */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -182,6 +203,7 @@
 				1CEC383526CFA0F1000A3617 /* FormStyleModifier.swift */,
 				1CEC383726CFA0FD000A3617 /* MenuButtonStyleModifier.swift */,
 				1C7823D126D9301C00AF4BF1 /* SearchBarModifier.swift */,
+				1C9914A426DFA94300AF1176 /* DisclosureGroupText.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -347,6 +369,7 @@
 				1CD850E026D4076600808141 /* LocationManager.swift in Sources */,
 				1CEC382426CFA067000A3617 /* Persistence.swift in Sources */,
 				1CEC381D26CFA066000A3617 /* MainView.swift in Sources */,
+				1C57DB9926DFE6D100703FEC /* WelcomeView+WelcomeViews.swift in Sources */,
 				1CEC381B26CFA066000A3617 /* CoviderApp.swift in Sources */,
 				1CEC383326CFA0D8000A3617 /* WelcomeScreenModel.swift in Sources */,
 				1C7823D226D9301C00AF4BF1 /* SearchBarModifier.swift in Sources */,
@@ -363,6 +386,7 @@
 				1CEC384126CFA243000A3617 /* Duty+CoreDataProperties.swift in Sources */,
 				1CEC384F26CFA2C8000A3617 /* WelcomePage.swift in Sources */,
 				1CEC385326CFA2E5000A3617 /* DutySetupAlert.swift in Sources */,
+				1C9914A526DFA94300AF1176 /* DisclosureGroupText.swift in Sources */,
 				1C3F650026D12DED007861DF /* UIApplication+EndEditingAndHideKeyboard.swift in Sources */,
 				1CEC384926CFA29B000A3617 /* HomeView.swift in Sources */,
 				1CFC4BFB26D2E07D00B319C4 /* PlaceModel.swift in Sources */,

@@ -8,20 +8,26 @@
 import SwiftUI
 import UserNotifications
 
-class NotificationManager: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
-    let notificationCenter = UNUserNotificationCenter.current()
+final class NotificationManager: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
+    public let notificationCenter = UNUserNotificationCenter.current()
 
     override init() {
         super.init()
         notificationCenter.delegate = self
     }
     
-    func requestNotificationPermission(successful: @escaping () -> Void, failure: @escaping (Error) -> Void) {
+    /// This method requests authorization and then, after obtaining permissions, executes the given code fragment.
+    /// - Parameters:
+    ///   - successful: An escaping closure, which is executed when the user allows sending notifications.
+    ///   - failure: An escaping closure, which is executed when the user denies sending notifications.
+    public func requestNotificationPermission(successful: @escaping () -> Void, failure: @escaping () -> Void) {
         notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
             if success {
                 successful()
             } else if let error = error {
-                failure(error)
+                print(error.localizedDescription)
+            } else {
+                failure()
             }
         }
     }

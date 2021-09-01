@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// A modifier which adds the SearchBar to the NavigationView
 struct SearchBarModifier: ViewModifier {
     let searchBar: SearchBar
     

@@ -17,15 +17,18 @@ struct WelcomePage: View {
         VStack(spacing: 4) {
             Spacer()
             
+            // System Image or the AnyView (e.g. PermissionView())
             welcomeView
                 .scaledToFit()
             
             Spacer()
             
+            // Title
             Text(title)
                 .font(.largeTitle)
                 .bold()
             
+            // Description
             ScrollView(.vertical, showsIndicators: false) {
                 Text(description)
                     .font(.subheadline)

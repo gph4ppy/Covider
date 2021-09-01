@@ -12,7 +12,7 @@ struct StopWatchUnitView: View {
     
     /// Time unit expressed as String.
     /// - Includes "0" as prefix if this is less than 10
-    var timeUnitStr: String {
+    private var timeUnitStr: String {
         let timeUnitStr = String(timeUnit)
         return timeUnit < 10 ? "0" + timeUnitStr : timeUnitStr
     }

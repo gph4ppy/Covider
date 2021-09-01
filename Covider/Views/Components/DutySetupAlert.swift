@@ -14,7 +14,7 @@ struct DutySetupAlert: View {
     @State private var vaccinatedDivision: Bool                     = true
     @State private var didStartSession: Bool                        = false
     @Binding var isVisible: Bool
-    var isDisabled: Bool {
+    private var isDisabled: Bool {
         title.isEmpty || guardName.isEmpty || placeName.isEmpty ? true : false
     }
     
@@ -94,9 +94,9 @@ struct DutySetupAlert: View {
 }
 
 // MARK: - Methods
-extension DutySetupAlert {
+private extension DutySetupAlert {
     /// This method clears TextFields when the isVisible value changes.
-    private func clearAlertFields(_: Bool) -> Void {
+    func clearAlertFields(_: Bool) -> Void {
         if !didStartSession {
             self.title = ""
             self.guardName = ""
@@ -106,7 +106,7 @@ extension DutySetupAlert {
     }
     
     /// This method hides the keyboard and alert.
-    private func cancel() {
+    func cancel() {
         withAnimation {
             UIApplication.shared.endEditing()
             self.isVisible = false

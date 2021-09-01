@@ -40,10 +40,10 @@ struct HomeView: View {
 }
 
 // MARK: - Methods
-extension HomeView {
+private extension HomeView {
     /// This method removes selected duty from the context.
     /// - Parameter offsets: A set of indexes representing elements in the duties array.
-    private func removeDuty(at offsets: IndexSet) {
+    func removeDuty(at offsets: IndexSet) {
         for index in offsets {
             let duty = duties[index]
             viewContext.delete(duty)
@@ -54,7 +54,7 @@ extension HomeView {
     /// This method filters an array with duties using the search text, entered in Search Bar.
     /// - Parameter duty: Fetched object, stores data about the duty.
     /// - Returns: A logical value indicates whether a given duty contains the given text. If so, it is displayed in HomeView.
-    private func filterDutiesArray(_ duty: Duty) -> Bool {
+    func filterDutiesArray(_ duty: Duty) -> Bool {
         let dateFormatter = DateFormatter()
         let startDate = dateFormatter.string(from: duty.startDate)
         let endDate = dateFormatter.string(from: duty.endDate)
@@ -69,20 +69,21 @@ extension HomeView {
 }
 
 // MARK: - Views
-extension HomeView {
+private extension HomeView {
     // I use the overlay variable because the opacity change
     // using the ternary operator in the .overlay modifier, for some reason,
     // disabled the functionality of the application in dark mode
     // (the ToolbarItems did not work).
-    private var overlay: some View {
+    var overlay: some View {
         Color.primary
             .opacity(0.4)
             .ignoresSafeArea()
     }
     
     // List or description that duties array does not contain data.
-    @ViewBuilder private var listView: some View {
+    @ViewBuilder var listView: some View {
         if duties.isEmpty {
+            // Text telling that the list is empty
             VStack {
                 Spacer()
                 Text(LocalizedStrings.emptyList)
@@ -94,6 +95,7 @@ extension HomeView {
                 Spacer()
             }
         } else {
+            // List of duties
             List {
                 ForEach(duties.filter(filterDutiesArray), id: \.self) { duty in
                     NavigationLink(destination: DetailView(duty: duty)) {
@@ -107,7 +109,8 @@ extension HomeView {
     
     /// This method creates the toolbar.
     /// - Returns: Toolbar Content, which contains Toolbar Items - Edit Button and "New Duty" button
-    @ToolbarContentBuilder private func createToolbar() -> some ToolbarContent {
+    @ToolbarContentBuilder func createToolbar() -> some ToolbarContent {
+        // New Duty Button
         ToolbarItem(placement: .navigationBarTrailing) {
             Button(LocalizedStrings.newDuty) {
                 withAnimation {
@@ -117,6 +120,7 @@ extension HomeView {
             .disabled(showingSetupForm)
         }
         
+        // Edit Button
         ToolbarItem(placement: .navigationBarLeading) {
             EditButton()
                 .disabled(showingSetupForm)

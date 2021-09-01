@@ -12,12 +12,15 @@ struct DutyCard: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            // Title of the saved duty
             Text(duty.title)
                 .font(.title3)
             
+            // Place of the saved duty
             Text(duty.place)
                 .font(.headline)
             
+            // Start date of the saved duty
             Text("\(duty.startDate)")
                 .font(.subheadline)
                 .foregroundColor(.gray)
