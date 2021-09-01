@@ -28,6 +28,7 @@ struct LocalizedStrings {
     // MARK: - Home View
     public static let duties = NSLocalizedString("duties", comment: "")
     public static let newDuty = NSLocalizedString("new_duty", comment: "")
+    public static let search = NSLocalizedString("search", comment: "")
 
     // MARK: - Session View
     public static let endSession = NSLocalizedString("end_session", comment: "")
@@ -51,6 +52,7 @@ struct LocalizedStrings {
     public static let endDate = NSLocalizedString("end_date", comment: "")
     public static let vaccinated = NSLocalizedString("vaccinated", comment: "")
     public static let unvaccinated = NSLocalizedString("unvaccinated", comment: "")
+    public static let entriesChart = NSLocalizedString("entries_chart", comment: "")
     
     // MARK: - Duty Setup Alert
     public static let setupDutyTitle = NSLocalizedString("setup_duty_title", comment: "")

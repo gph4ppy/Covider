@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var showingSetupForm: Bool = false
+    @ObservedObject private var searchBar: SearchBar                = SearchBar()
+    @State private var showingSetupForm: Bool                       = false
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [
@@ -18,16 +19,6 @@ struct HomeView: View {
         animation: .default
     ) private var duties: FetchedResults<Duty>
     
-    // I use the overlay variable because the opacity change
-    // using the ternary operator in the .overlay modifier, for some reason,
-    // disabled the functionality of the application in dark mode
-    // (the ToolbarItems did not work).
-    var overlay: some View {
-        Color.primary
-            .opacity(0.4)
-            .ignoresSafeArea()
-    }
-    
     var body: some View {
         ZStack {
             NavigationView {
@@ -35,6 +26,7 @@ struct HomeView: View {
                     .navigationBarTitle(LocalizedStrings.duties)
                     .toolbar(content: createToolbar)
                     .navigationViewStyle(StackNavigationViewStyle())
+                    .add(searchBar)
             }
             .blur(radius: showingSetupForm ? 3 : 0)
             .overlay(showingSetupForm ? overlay : nil)
@@ -51,19 +43,45 @@ struct HomeView: View {
 extension HomeView {
     /// This method removes selected duty from the context.
     /// - Parameter offsets: A set of indexes representing elements in the duties array.
-    func removeDuty(at offsets: IndexSet) {
+    private func removeDuty(at offsets: IndexSet) {
         for index in offsets {
             let duty = duties[index]
             viewContext.delete(duty)
             PersistenceController.shared.saveContext()
         }
     }
+    
+    /// This method filters an array with duties using the search text, entered in Search Bar.
+    /// - Parameter duty: Fetched object, stores data about the duty.
+    /// - Returns: A logical value indicates whether a given duty contains the given text. If so, it is displayed in HomeView.
+    private func filterDutiesArray(_ duty: Duty) -> Bool {
+        let dateFormatter = DateFormatter()
+        let startDate = dateFormatter.string(from: duty.startDate)
+        let endDate = dateFormatter.string(from: duty.endDate)
+        
+        return searchBar.text.isEmpty ||
+            duty.title.contains(searchBar.text) ||
+            duty.description.contains(searchBar.text) ||
+            duty.guardName.contains(searchBar.text) ||
+            startDate.contains(searchBar.text) ||
+            endDate.contains(searchBar.text)
+    }
 }
 
 // MARK: - Views
 extension HomeView {
+    // I use the overlay variable because the opacity change
+    // using the ternary operator in the .overlay modifier, for some reason,
+    // disabled the functionality of the application in dark mode
+    // (the ToolbarItems did not work).
+    private var overlay: some View {
+        Color.primary
+            .opacity(0.4)
+            .ignoresSafeArea()
+    }
+    
     // List or description that duties array does not contain data.
-    @ViewBuilder var listView: some View {
+    @ViewBuilder private var listView: some View {
         if duties.isEmpty {
             VStack {
                 Spacer()
@@ -72,12 +90,12 @@ extension HomeView {
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.center)
                     .opacity(0.2)
+                    .padding()
                 Spacer()
             }
-            .padding()
         } else {
             List {
-                ForEach(duties, id: \.self) { duty in
+                ForEach(duties.filter(filterDutiesArray), id: \.self) { duty in
                     NavigationLink(destination: DetailView(duty: duty)) {
                         DutyCard(duty: duty)
                     }
@@ -89,7 +107,7 @@ extension HomeView {
     
     /// This method creates the toolbar.
     /// - Returns: Toolbar Content, which contains Toolbar Items - Edit Button and "New Duty" button
-    @ToolbarContentBuilder func createToolbar() -> some ToolbarContent {
+    @ToolbarContentBuilder private func createToolbar() -> some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
             Button(LocalizedStrings.newDuty) {
                 withAnimation {

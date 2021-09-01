@@ -68,6 +68,7 @@ struct DutySetupAlert: View {
                     Spacer()
 
                     Button {
+                        UIApplication.shared.endEditing()
                         self.didStartSession = true
                         self.isVisible = false
                     } label: {

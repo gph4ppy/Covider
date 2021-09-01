@@ -48,17 +48,16 @@ struct SessionView: View {
             StopWatchView(progressTime: $progressTime)
             
             // End Session Button
-            Button(action: {
-                self.showingAlert = true
-            }) {
+            Button(action: { self.showingAlert = true }) {
                 Text(LocalizedStrings.endSession)
                     .menuButtonStyle(background: Color(.red))
             }
         }
         .padding()
         .navigationBarBackButtonHidden(true)
-        .onAppear { self.buttonSize = divisionOfVaccinated ? 50 : 80 }
         .alert(isPresented: $showingAlert, content: createAlert)
+        .onAppear { self.buttonSize = divisionOfVaccinated ? 50 : 80 }
+        .onDisappear(perform: locationManager.stop)
     }
 }
 
@@ -66,8 +65,9 @@ struct SessionView: View {
 extension SessionView {
     /// This method saves the duty.
     func saveDuty() {
-        let latitude = locationManager.lastLocation?.coordinate.latitude
-        let longitude = locationManager.lastLocation?.coordinate.longitude
+        guard let lastLocation = locationManager.lastLocation?.coordinate else { return }
+        let latitude = lastLocation.latitude
+        let longitude = lastLocation.longitude
         
         let duty = DutyViewModel(title: self.title,
                                  place: self.place,
@@ -81,8 +81,8 @@ extension SessionView {
                                  allEntriesDate: self.allEntriesDate,
                                  vaccinatedEntriesDate: self.vaccinatedEntriesDate,
                                  unvaccinatedEntriesDate: self.unvaccinatedEntriesDate,
-                                 latitude: latitude.map(mapLocalization),
-                                 longitude: longitude.map(mapLocalization))
+                                 latitude: String(latitude),
+                                 longitude: String(longitude))
         
         DutyViewModel.saveDuty(duty)
         self.presentationMode.wrappedValue.dismiss()

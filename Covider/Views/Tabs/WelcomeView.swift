@@ -8,12 +8,7 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    @StateObject var locationManager: LocationManager           = LocationManager()
-    @State var locationToggle: Bool                             = locationAuthorizedAlways || locationAuthorizedWhenInUse ? true : false
-    @State var notificationToggle: Bool                         = false
     @AppStorage("isFirstTime") private var isFirstTime: Bool    = true
-    static let locationAuthorizedAlways: Bool                   = LocationManager().locationStatus == .authorizedAlways
-    static let locationAuthorizedWhenInUse: Bool                = LocationManager().locationStatus == .authorizedWhenInUse
     
     var body: some View {
         // I use this array as computed property, because on a physical
@@ -33,7 +28,7 @@ struct WelcomeView: View {
                 WelcomeScreenModel(welcomeView: AnyView(buttons),
                                    title: LocalizedStrings.youAreInControl,
                                    description: LocalizedStrings.welcomeScreenDescription4),
-                WelcomeScreenModel(welcomeView: AnyView(permissions),
+                WelcomeScreenModel(welcomeView: AnyView(PermissionView()),
                                    title: LocalizedStrings.permissions,
                                    description: LocalizedStrings.welcomeScreenDescription5),
                 WelcomeScreenModel(welcomeView: AnyView(sparkles),
@@ -71,25 +66,6 @@ struct WelcomeView: View {
         }
         .padding()
         .fullScreenCover(isPresented: .constant(!isFirstTime)) { HomeView() }
-        .onChange(of: locationToggle, perform: { _ in
-            locationManager.locationManager.requestWhenInUseAuthorization()
-        })
-        .onChange(of: locationManager.locationStatus, perform: { value in
-            print(locationManager.statusString)
-        })
-        .onChange(of: notificationToggle, perform: { _ in
-            requestNotificationPermission()
-        })
-    }
-    
-    func requestNotificationPermission() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-            if success {
-                print("All set!")
-            } else if let error = error {
-                print(error.localizedDescription)
-            }
-        }
     }
 }
 
@@ -128,32 +104,7 @@ extension WelcomeView {
     }
     
     // 5th
-    @ViewBuilder var permissions: some View {
-        VStack(spacing: 10) {
-            Toggle(LocalizedStrings.location, isOn: $locationToggle)
-            
-            DisclosureGroup(LocalizedStrings.locationPermissionTitle) {
-                Text(LocalizedStrings.locationPermissionDescription)
-                    .font(.footnote)
-                    .fontWeight(.regular)
-                    .multilineTextAlignment(.leading)
-            }
-            .font(.subheadline.bold())
-            
-            Divider()
-                .padding()
-            
-            Toggle(LocalizedStrings.notifications, isOn: $notificationToggle)
-            
-            DisclosureGroup(LocalizedStrings.notificationPermissionTitle) {
-                Text(LocalizedStrings.notificationPermissionDescription)
-                    .font(.footnote)
-                    .fontWeight(.regular)
-                    .multilineTextAlignment(.leading)
-            }
-            .font(.subheadline.bold())
-        }
-    }
+    // PermissionView()
     
     // 6th
     @ViewBuilder var sparkles: some View {

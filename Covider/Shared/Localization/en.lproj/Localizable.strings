@@ -26,6 +26,7 @@
 // MARK: - Home View
 "duties" = "Duties";
 "new_duty" = "New duty";
+"search" = "Search...";
 
 // MARK: - Session View
 "end_session" = "End session";
@@ -37,10 +38,14 @@
 // MARK: - Permissions
 "location" = "Location";
 "notifications" = "Notifications";
-"notification_permission_title" = "Please, allow notifications";
-"notification_permission_description" = "After tapping the \"Start Duty\" button, an alert asking for permission to notify will be displayed. Please, allow it - the app will not send you notifications. This is necessary for the stopwatch to count in the background, e.g. when a screen is locked. However, if it does not interfere you the inaccuracy of the session duration after locking the screen or you are sure that you will have the screen turned on all the time, ignore this notification and click the \"don't allow\" button in the next alert.";
-"location_permission_title" = "Please, allow location";
-"location_permission_description" = "After tapping the \"Start Duty\" button, an alert asking for permission to notify will be displayed. Please, allow it - the app will not send you notifications. This is necessary for the stopwatch to count in the background, e.g. when a screen is locked. However, if it does not interfere you the inaccuracy of the session duration after locking the screen or you are sure that you will have the screen turned on all the time, ignore this notification and click the \"don't allow\" button in the next alert.";
+"notification_permission_title" = "Why do you need consent to notifications?";
+"notification_permission_description" = "After switching the above toggle, an alert asking for permission to notify will be displayed. Please, allow it - the app will not send you notifications. This is necessary for the stopwatch to count in the background, e.g. when a screen is locked. However, if it does not interfere you the inaccuracy of the session duration after locking the screen or you are sure that you will have the screen turned on all the time, ignore this notification and click the \"don't allow\" button in the alert.";
+"location_permission_title" = "Why do you need consent to my location?";
+"location_permission_description" = "After switching the above toggle, an alert asking for permission to use your location. Please, allow it - the app will not share your data. This is necessary for the Detail View to display the location of the duty on the map. However, if you do not want to have a map with the localization of the duty, ignore this notification and click the \"don't allow\" button in the alert.
+
+Selecting \"Allow Once\" allows you to use your location until the application is turned off. This means that at the next start and inclusion of the session, you will need to re-grant or refuse consent.
+
+Selecting \"Allow While Using App\" allows you to use the location only when the application is turned on. The location is collected only when the duty is performed - after the session is completed, it is not updated. There is no need to re-grant the consent.";
 
 // MARK: - Detail View
 "all_people" = "All people";
@@ -49,6 +54,7 @@
 "end_date" = "End Date";
 "vaccinated" = "Vaccinated";
 "unvaccinated" = "Unvaccinated";
+"entries_chart" = "Entries Chart";
 
 // MARK: - Duty Setup Alert
 "setup_duty_title" = "Setup Duty";

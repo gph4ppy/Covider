@@ -9,12 +9,13 @@ import SwiftUI
 import UserNotifications
 
 struct StopWatchView: View {
-    @State private var timer: Timer?            = Timer()
-    @State private var notificationDate: Date   = Date()
+    @State private var timer: Timer?                = Timer()
+    @State private var notificationDate: Date       = Date()
     @Binding var progressTime: Int
-    var hours: Int                              { progressTime / 3600 }
-    var minutes: Int                            { (progressTime % 3600) / 60 }
-    var seconds: Int                            { progressTime % 60 }
+    let notificationManager: NotificationManager    = NotificationManager()
+    var hours: Int                                  { progressTime / 3600 }
+    var minutes: Int                                { (progressTime % 3600) / 60 }
+    var seconds: Int                                { progressTime % 60 }
 
     var body: some View {
         HStack(spacing: 2) {
@@ -26,7 +27,12 @@ struct StopWatchView: View {
         }
         .onAppear {
             start()
-            requestPermission()
+            
+            notificationManager.requestNotificationPermission {
+                print("Notification permissions granted.")
+            } failure: { error in
+                print(error.localizedDescription)
+            }
         }
         .onReceive(NotificationCenter.default.publisher(
             for: UIApplication.willResignActiveNotification
@@ -52,16 +58,6 @@ struct StopWatchView: View {
         }
     }
 
-    func requestPermission() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-            if success {
-                print("All set!")
-            } else if let error = error {
-                print(error.localizedDescription)
-            }
-        }
-    }
-
     func movingToBackground() {
         print("Moving to the background")
         notificationDate = Date()
@@ -75,39 +71,3 @@ struct StopWatchView: View {
         start()
     }
 }
-
-//class NotificationManager: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
-//    private let notificationManager = UNUserNotificationCenter.current()
-//    @Published var notificationStatus: UNAuthorizationStatus?
-//    
-//    override init() {
-//        super.init()
-//        notificationManager.delegate = self
-//        NotificationManager.requestNotificationPermission()
-//    }
-//    
-//    public static func requestNotificationPermission() {
-//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-//            if success {
-//                print("All set!")
-//            } else if let error = error {
-//                print(error.localizedDescription)
-//            }
-//        }
-//    }
-//    
-//    var statusString: String {
-//        guard let status = notificationStatus else {
-//            return "unknown"
-//        }
-//        
-//        switch status {
-//            case .notDetermined: return "notDetermined"
-//            case .authorized: return "authorized"
-//            case .ephemeral: return "ephemeral"
-//            case .provisional: return "provisional"
-//            case .denied: return "denied"
-//            default: return "unknown"
-//        }
-//    }
-//}

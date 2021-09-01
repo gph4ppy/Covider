@@ -57,35 +57,74 @@ struct DetailView: View {
             
             // Chart
             VStack {
-                Text("Entries Chart")
+                Text(LocalizedStrings.entriesChart)
                     .font(.title3)
                     .fontWeight(.semibold)
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(startHour..<(endHour + Int.random(in: 1...24))) { hour in
-                            let random = Int.random(in: 2...300)
-                            var filteredDates: [Int] = []
+                        ForEach(startHour..<(endHour + 1)) { hour in
+                            let allEntriesSum = sumEntries(hour: hour, in: duty.allEntriesDate)
+                            let vaccinatedEntriesSum = sumEntries(hour: hour, in: duty.vaccinatedEntriesDate)
+                            let unvaccinatedEntriesSum = sumEntries(hour: hour, in: duty.unvaccinatedEntriesDate)
+
                             VStack {
                                 Spacer()
                                 
-                                Text(String(random))
-                                    .font(.footnote)
-                                    .rotationEffect(.degrees(-90))
-                                    .offset(y: 35)
-                                    .zIndex(1)
-                                    .offset(y: random > 60 ? 0 : -35)
+                                if duty.divisionOfVaccinated {
+                                    HStack(alignment: .bottom, spacing: 0) {
+                                        VStack {
+                                            Text(String(allEntriesSum))
+                                                .font(.footnote)
+                                                .rotationEffect(.degrees(-90))
+                                                .zIndex(1)
+                                                .foregroundColor(.blue)
+                                            
+                                            RoundedRectangle(cornerRadius: 4)
+                                                .fill(Color.blue)
+                                                .frame(width: 10, height: CGFloat(allEntriesSum) * 2)
+                                        }
+                                        
+                                        VStack {
+                                            Text(String(vaccinatedEntriesSum))
+                                                .font(.footnote)
+                                                .rotationEffect(.degrees(-90))
+                                                .zIndex(1)
+                                                .foregroundColor(.green)
+                                            
+                                            RoundedRectangle(cornerRadius: 4)
+                                                .fill(Color.green)
+                                                .frame(width: 10, height: CGFloat(vaccinatedEntriesSum) * 2)
+                                        }
+                                        
+                                        VStack {
+                                            Text(String(unvaccinatedEntriesSum))
+                                                .font(.footnote)
+                                                .rotationEffect(.degrees(-90))
+                                                .zIndex(1)
+                                                .foregroundColor(.red)
+                                            
+                                            RoundedRectangle(cornerRadius: 4)
+                                                .fill(Color.red)
+                                                .frame(width: 10, height: CGFloat(unvaccinatedEntriesSum) * 2)
+                                        }
+                                    }
+                                } else {
+                                    Text(String(allEntriesSum))
+                                        .font(.footnote)
+                                        .rotationEffect(.degrees(-90))
+                                        .offset(y: 35)
+                                        .zIndex(1)
+                                        .offset(y: allEntriesSum > 60 ? 0 : -35)
+                                    
+                                    RoundedRectangle(cornerRadius: 4)
+                                        .fill(Color.blue)
+                                        .frame(width: 30, height: CGFloat(allEntriesSum) * 2)
+                                }
                                 
-                                RoundedRectangle(cornerRadius: 4)
-                                    .fill(Color.blue)
-                                    .frame(width: 30, height: CGFloat(random) * 0.5)
-                                
-                                Text(String(hour > 24 ? hour - 24 : hour))
+                                Text(String(hour >= 24 ? hour - 24 : hour))
                                     .font(.footnote)
                                     .frame(height: 20)
-                            }
-                            .onAppear {
-                                // MARK: - Dates
                             }
                         }
                     }
@@ -117,6 +156,12 @@ extension DetailView {
             data.insert((title: LocalizedStrings.vaccinated, dutyData: String(duty.vaccinatedCount)), at: 1)
             data.insert((title: LocalizedStrings.unvaccinated, dutyData: String(duty.unvaccinatedCount)), at: 2)
         }
+    }
+    
+    func sumEntries(hour: Int, in array: [Date]) -> Int {
+        array.filter {
+            Calendar.current.component(.hour, from: $0) == hour
+        }.count
     }
 }
 

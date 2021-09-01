@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1C3F650026D12DED007861DF /* UIApplication+EndEditingAndHideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3F64FF26D12DED007861DF /* UIApplication+EndEditingAndHideKeyboard.swift */; };
 		1C571A3426D3F1190060ED31 /* OperationButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C571A3326D3F1190060ED31 /* OperationButtonStyle.swift */; };
+		1C64BF6326DBAC6E009E89CB /* PermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C64BF6226DBAC6E009E89CB /* PermissionView.swift */; };
+		1C7823CE26D92FA000AF4BF1 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7823CD26D92FA000AF4BF1 /* SearchBar.swift */; };
+		1C7823D226D9301C00AF4BF1 /* SearchBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7823D126D9301C00AF4BF1 /* SearchBarModifier.swift */; };
 		1CD850E026D4076600808141 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD850DF26D4076600808141 /* LocationManager.swift */; };
 		1CD850E426D40E1000808141 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD850E326D40E1000808141 /* CloudKit.framework */; };
 		1CDE82B126D1006800340CDD /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDE82B026D1006800340CDD /* DetailView.swift */; };
@@ -34,6 +37,8 @@
 		1CEC385326CFA2E5000A3617 /* DutySetupAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC385226CFA2E5000A3617 /* DutySetupAlert.swift */; };
 		1CEC385526CFA2ED000A3617 /* StopWatchUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC385426CFA2ED000A3617 /* StopWatchUnitView.swift */; };
 		1CEC385726CFA2F6000A3617 /* StopWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEC385626CFA2F6000A3617 /* StopWatchView.swift */; };
+		1CEFF51B26D9120E00B674CB /* ViewControllerResolvers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF51A26D9120E00B674CB /* ViewControllerResolvers.swift */; };
+		1CFA282426DB9D9F00833B59 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CFA282326DB9D9F00833B59 /* NotificationManager.swift */; };
 		1CFC4BF426D2D75D00B319C4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CFC4BF626D2D75D00B319C4 /* Localizable.strings */; };
 		1CFC4BF926D2D94C00B319C4 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CFC4BF826D2D94C00B319C4 /* LocalizedStrings.swift */; };
 		1CFC4BFB26D2E07D00B319C4 /* PlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CFC4BFA26D2E07D00B319C4 /* PlaceModel.swift */; };
@@ -42,6 +47,9 @@
 /* Begin PBXFileReference section */
 		1C3F64FF26D12DED007861DF /* UIApplication+EndEditingAndHideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+EndEditingAndHideKeyboard.swift"; sourceTree = "<group>"; };
 		1C571A3326D3F1190060ED31 /* OperationButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationButtonStyle.swift; sourceTree = "<group>"; };
+		1C64BF6226DBAC6E009E89CB /* PermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionView.swift; sourceTree = "<group>"; };
+		1C7823CD26D92FA000AF4BF1 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		1C7823D126D9301C00AF4BF1 /* SearchBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarModifier.swift; sourceTree = "<group>"; };
 		1CD850DF26D4076600808141 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		1CD850E126D40E0D00808141 /* Covider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Covider.entitlements; sourceTree = "<group>"; };
 		1CD850E326D40E1000808141 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -70,6 +78,8 @@
 		1CEC385226CFA2E5000A3617 /* DutySetupAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutySetupAlert.swift; sourceTree = "<group>"; };
 		1CEC385426CFA2ED000A3617 /* StopWatchUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchUnitView.swift; sourceTree = "<group>"; };
 		1CEC385626CFA2F6000A3617 /* StopWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchView.swift; sourceTree = "<group>"; };
+		1CEFF51A26D9120E00B674CB /* ViewControllerResolvers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerResolvers.swift; sourceTree = "<group>"; };
+		1CFA282326DB9D9F00833B59 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		1CFC4BF526D2D75D00B319C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1CFC4BF726D2D75E00B319C4 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1CFC4BF826D2D94C00B319C4 /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
@@ -88,6 +98,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C7823CC26D92F8900AF4BF1 /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				1C7823CD26D92FA000AF4BF1 /* SearchBar.swift */,
+				1CEFF51A26D9120E00B674CB /* ViewControllerResolvers.swift */,
+			);
+			path = SearchBar;
+			sourceTree = "<group>";
+		};
 		1CD850E226D40E1000808141 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +181,7 @@
 				1C571A3326D3F1190060ED31 /* OperationButtonStyle.swift */,
 				1CEC383526CFA0F1000A3617 /* FormStyleModifier.swift */,
 				1CEC383726CFA0FD000A3617 /* MenuButtonStyleModifier.swift */,
+				1C7823D126D9301C00AF4BF1 /* SearchBarModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -199,8 +219,10 @@
 		1CEC384226CFA262000A3617 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				1C7823CC26D92F8900AF4BF1 /* SearchBar */,
 				1CEC384326CFA26E000A3617 /* DutyViewModel.swift */,
 				1CD850DF26D4076600808141 /* LocationManager.swift */,
+				1CFA282326DB9D9F00833B59 /* NotificationManager.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -222,6 +244,7 @@
 				1CEC385226CFA2E5000A3617 /* DutySetupAlert.swift */,
 				1CEC385426CFA2ED000A3617 /* StopWatchUnitView.swift */,
 				1CEC385626CFA2F6000A3617 /* StopWatchView.swift */,
+				1C64BF6226DBAC6E009E89CB /* PermissionView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -326,12 +349,16 @@
 				1CEC381D26CFA066000A3617 /* MainView.swift in Sources */,
 				1CEC381B26CFA066000A3617 /* CoviderApp.swift in Sources */,
 				1CEC383326CFA0D8000A3617 /* WelcomeScreenModel.swift in Sources */,
+				1C7823D226D9301C00AF4BF1 /* SearchBarModifier.swift in Sources */,
 				1CEC384B26CFA2AB000A3617 /* SessionView.swift in Sources */,
 				1CEC385726CFA2F6000A3617 /* StopWatchView.swift in Sources */,
 				1CEC384426CFA26E000A3617 /* DutyViewModel.swift in Sources */,
 				1CEC383026CFA08B000A3617 /* String+SubstringIn.swift in Sources */,
 				1CDE82B126D1006800340CDD /* DetailView.swift in Sources */,
 				1C571A3426D3F1190060ED31 /* OperationButtonStyle.swift in Sources */,
+				1CEFF51B26D9120E00B674CB /* ViewControllerResolvers.swift in Sources */,
+				1C64BF6326DBAC6E009E89CB /* PermissionView.swift in Sources */,
+				1C7823CE26D92FA000AF4BF1 /* SearchBar.swift in Sources */,
 				1CEC385126CFA2D8000A3617 /* DutyCard.swift in Sources */,
 				1CEC384126CFA243000A3617 /* Duty+CoreDataProperties.swift in Sources */,
 				1CEC384F26CFA2C8000A3617 /* WelcomePage.swift in Sources */,
@@ -343,6 +370,7 @@
 				1CEC384026CFA243000A3617 /* Duty+CoreDataClass.swift in Sources */,
 				1CEC383626CFA0F1000A3617 /* FormStyleModifier.swift in Sources */,
 				1CFC4BF926D2D94C00B319C4 /* LocalizedStrings.swift in Sources */,
+				1CFA282426DB9D9F00833B59 /* NotificationManager.swift in Sources */,
 				1CEC384D26CFA2BB000A3617 /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
