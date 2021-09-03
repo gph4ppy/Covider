@@ -1,4 +1,5 @@
-# Covider ![Status](https://img.shields.io/static/v1?label=status&message=complete&color=brightgreen) [![Current Version](https://img.shields.io/badge/version-1.0-green.svg)](https://github.com/gph4ppy/covider) [![GitHub Stars](https://img.shields.io/github/stars/gph4ppy/covider.svg)](https://github.com/gph4ppy/Covider/stargazers) [![GitHub Issues](https://img.shields.io/github/issues/gph4ppy/covider.svg)](https://github.com/gph4ppy/covider/issues)
+# Covider
+![Status](https://img.shields.io/static/v1?label=status&message=complete&color=brightgreen) [![Current Version](https://img.shields.io/badge/version-1.0-green.svg)](https://github.com/gph4ppy/covider) [![GitHub Stars](https://img.shields.io/github/stars/gph4ppy/covider.svg)](https://github.com/gph4ppy/Covider/stargazers) [![GitHub Issues](https://img.shields.io/github/issues/gph4ppy/covider.svg)](https://github.com/gph4ppy/covider/issues)
 
 > A helpful counting app for security guards, created with SwiftUI.
 
