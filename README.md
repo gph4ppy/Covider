@@ -34,7 +34,13 @@ Covider is an iOS app that helps security guards count people. Thanks to it, the
 - Simple interface, with smooth and meaningful animations.
 
 ## Screenshots
--- to do -- 
+| Light Detail View  | Dark Detail View   |
+| ------------------ | ------------------ |
+| ![Light Detail View](https://user-images.githubusercontent.com/41966757/132108934-cb52993c-4e87-40f7-a98a-ce3968cd6640.png)       | ![Dark Detail View](https://user-images.githubusercontent.com/41966757/132108945-45411f1e-975f-4a8e-a939-a4805db0d110.png)       |
+
+| Divided Session    | Normal Session     |
+| ------------------ | ------------------ |
+| Content Cell       | Content Cell       |
 
 <!---- TO DO
 ## Download
