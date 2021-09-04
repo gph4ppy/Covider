@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Logo" src="https://user-images.githubusercontent.com/41966757/132109094-1572addc-201d-41f9-978b-ee5095b0f446.png" width="25%" height="25%"/>
+  <img alt="Logo" src="https://user-images.githubusercontent.com/41966757/132109094-1572addc-201d-41f9-978b-ee5095b0f446.png" width="10%" height="10%"/>
 </p>
 
 # Covider
