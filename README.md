@@ -54,7 +54,9 @@ Covider is available for free on the AppStore - you can try it out yourself. To 
 ------>
 
 ## Usage
-<img src="https://user-images.githubusercontent.com/41966757/132108840-4d526062-1626-4508-8fc6-ad45d8435fea.gif" alt="Usage of the application" width="50%" height="50%"/>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/41966757/132108840-4d526062-1626-4508-8fc6-ad45d8435fea.gif" alt="Usage of the application" width="25%" height="25%"/>
+</p>
 
 ## Project Status
 Project is _complete_. However, I am going to make a version for watchOS in the future.
