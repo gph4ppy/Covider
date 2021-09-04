@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct DutySetupAlert: View {
-    @State private var title: String                                = ""
-    @State private var guardName: String                            = ""
-    @State private var placeName: String                            = ""
-    @State private var vaccinatedDivision: Bool                     = true
-    @State private var didStartSession: Bool                        = false
+    @State private var title: String                = ""
+    @State private var guardName: String            = ""
+    @State private var placeName: String            = ""
+    @State private var vaccinatedDivision: Bool     = true
+    @State private var didStartSession: Bool        = false
     @Binding var isVisible: Bool
     private var isDisabled: Bool {
         title.isEmpty || guardName.isEmpty || placeName.isEmpty ? true : false
@@ -66,12 +66,9 @@ struct DutySetupAlert: View {
                     }
                     
                     Spacer()
-
-                    Button {
-                        UIApplication.shared.endEditing()
-                        self.didStartSession = true
-                        self.isVisible = false
-                    } label: {
+                    
+                    // Start session button
+                    Button(action: startSession) {
                         Text(LocalizedStrings.startDuty)
                             .menuButtonStyle(background: isDisabled ? .gray : .green)
                     }
@@ -103,6 +100,14 @@ private extension DutySetupAlert {
             self.placeName = ""
             self.vaccinatedDivision = true
         }
+    }
+    
+    /// This method starts a session.
+    /// It closes the keyboard, hides the setup alert, and shows a SessionView.
+    func startSession() {
+        UIApplication.shared.endEditing()
+        self.didStartSession = true
+        self.isVisible = false
     }
     
     /// This method hides the keyboard and alert.

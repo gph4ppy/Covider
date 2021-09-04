@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// A modifier which returns a view similar to Form
+// Returns a view similar to Form
 struct FormStyleModifier: ViewModifier {
     func body(content: Content) -> some View {
         content

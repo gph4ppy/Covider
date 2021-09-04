@@ -10,7 +10,9 @@
 		1C3F650026D12DED007861DF /* UIApplication+EndEditingAndHideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3F64FF26D12DED007861DF /* UIApplication+EndEditingAndHideKeyboard.swift */; };
 		1C571A3426D3F1190060ED31 /* OperationButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C571A3326D3F1190060ED31 /* OperationButtonStyle.swift */; };
 		1C57DB9926DFE6D100703FEC /* WelcomeView+WelcomeViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57DB9826DFE6D100703FEC /* WelcomeView+WelcomeViews.swift */; };
+		1C6083B126E27E1A007A9506 /* DivisionActionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6083B026E27E1A007A9506 /* DivisionActionEnum.swift */; };
 		1C64BF6326DBAC6E009E89CB /* PermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C64BF6226DBAC6E009E89CB /* PermissionView.swift */; };
+		1C72718126E26BEB00D314C2 /* ColorInvertInDarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C72718026E26BEA00D314C2 /* ColorInvertInDarkMode.swift */; };
 		1C7823CE26D92FA000AF4BF1 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7823CD26D92FA000AF4BF1 /* SearchBar.swift */; };
 		1C7823D226D9301C00AF4BF1 /* SearchBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7823D126D9301C00AF4BF1 /* SearchBarModifier.swift */; };
 		1C9914A526DFA94300AF1176 /* DisclosureGroupText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9914A426DFA94300AF1176 /* DisclosureGroupText.swift */; };
@@ -50,7 +52,9 @@
 		1C3F64FF26D12DED007861DF /* UIApplication+EndEditingAndHideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+EndEditingAndHideKeyboard.swift"; sourceTree = "<group>"; };
 		1C571A3326D3F1190060ED31 /* OperationButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationButtonStyle.swift; sourceTree = "<group>"; };
 		1C57DB9826DFE6D100703FEC /* WelcomeView+WelcomeViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WelcomeView+WelcomeViews.swift"; sourceTree = "<group>"; };
+		1C6083B026E27E1A007A9506 /* DivisionActionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivisionActionEnum.swift; sourceTree = "<group>"; };
 		1C64BF6226DBAC6E009E89CB /* PermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionView.swift; sourceTree = "<group>"; };
+		1C72718026E26BEA00D314C2 /* ColorInvertInDarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorInvertInDarkMode.swift; sourceTree = "<group>"; };
 		1C7823CD26D92FA000AF4BF1 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		1C7823D126D9301C00AF4BF1 /* SearchBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarModifier.swift; sourceTree = "<group>"; };
 		1C9914A426DFA94300AF1176 /* DisclosureGroupText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureGroupText.swift; sourceTree = "<group>"; };
@@ -192,6 +196,7 @@
 			children = (
 				1CEC383226CFA0D8000A3617 /* WelcomeScreenModel.swift */,
 				1CFC4BFA26D2E07D00B319C4 /* PlaceModel.swift */,
+				1C6083B026E27E1A007A9506 /* DivisionActionEnum.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 				1CEC383726CFA0FD000A3617 /* MenuButtonStyleModifier.swift */,
 				1C7823D126D9301C00AF4BF1 /* SearchBarModifier.swift */,
 				1C9914A426DFA94300AF1176 /* DisclosureGroupText.swift */,
+				1C72718026E26BEA00D314C2 /* ColorInvertInDarkMode.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -377,6 +383,7 @@
 				1CEC385726CFA2F6000A3617 /* StopWatchView.swift in Sources */,
 				1CEC384426CFA26E000A3617 /* DutyViewModel.swift in Sources */,
 				1CEC383026CFA08B000A3617 /* String+SubstringIn.swift in Sources */,
+				1C72718126E26BEB00D314C2 /* ColorInvertInDarkMode.swift in Sources */,
 				1CDE82B126D1006800340CDD /* DetailView.swift in Sources */,
 				1C571A3426D3F1190060ED31 /* OperationButtonStyle.swift in Sources */,
 				1CEFF51B26D9120E00B674CB /* ViewControllerResolvers.swift in Sources */,
@@ -394,6 +401,7 @@
 				1CEC384026CFA243000A3617 /* Duty+CoreDataClass.swift in Sources */,
 				1CEC383626CFA0F1000A3617 /* FormStyleModifier.swift in Sources */,
 				1CFC4BF926D2D94C00B319C4 /* LocalizedStrings.swift in Sources */,
+				1C6083B126E27E1A007A9506 /* DivisionActionEnum.swift in Sources */,
 				1CFA282426DB9D9F00833B59 /* NotificationManager.swift in Sources */,
 				1CEC384D26CFA2BB000A3617 /* WelcomeView.swift in Sources */,
 			);

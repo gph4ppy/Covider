@@ -21,8 +21,7 @@ struct PermissionView: View {
             locationManager.locationStatus == .notDetermined ? $locationToggle : .constant(locationToggle)
         }()
         let notificationCondition: Binding<Bool> = {
-            notificationStatus == .notDetermined ?
-            $notificationToggle : .constant(notificationToggle)
+            notificationStatus == .notDetermined ? $notificationToggle : .constant(notificationToggle)
         }()
         
         ScrollView(.vertical, showsIndicators: false) {
@@ -81,9 +80,9 @@ private extension PermissionView {
         if let status = status {
             withAnimation {
                 switch status {
-                case .authorizedAlways, .authorizedWhenInUse: self.locationToggle = true
-                case .denied, .restricted, .notDetermined: self.locationToggle = false
-                @unknown default: fatalError("Unknown location status")
+                    case .authorizedAlways, .authorizedWhenInUse: self.locationToggle = true
+                    case .denied, .restricted, .notDetermined: self.locationToggle = false
+                    @unknown default: fatalError("Unknown location status")
                 }
             }
         }

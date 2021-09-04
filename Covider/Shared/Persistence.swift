@@ -10,7 +10,7 @@ import CoreData
 struct PersistenceController {
     public static let shared = PersistenceController()
     let container: NSPersistentContainer
-
+    
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Covider")
         

@@ -8,28 +8,33 @@
 import SwiftUI
 import MapKit
 
-// MARK: - TO DO: REFACTORING!!!! -
 struct SessionView: View {
-    @StateObject var locationManager: LocationManager               = LocationManager()
+    // Visual
     @State private var allPeopleCounter: Int                        = 0
     @State private var vaccinatedCounter: Int                       = 0
     @State private var unvaccinatedCounter: Int                     = 0
-    @State private var allPeopleSum: Int                            = 0
-    @State private var allVaccinatedSum: Int                        = 0
-    @State private var allUnvaccinatedSum: Int                      = 0
     @State private var buttonSize: CGFloat                          = 80
     @State private var showingAlert: Bool                           = false
     @State private var progressTime: Int                            = 0
-    @State private var allEntriesDate: [Date]                       = []
-    @State private var vaccinatedEntriesDate: [Date]                = []
-    @State private var unvaccinatedEntriesDate: [Date]              = []
+    
+    // Correct application work
+    @StateObject var locationManager: LocationManager               = LocationManager()
     @Environment(\.presentationMode) private var presentationMode
-    @Environment(\.colorScheme) private var colorScheme
+    
+    // Data to save
+    @State private var allPeopleSum: Int                            = 0
+    @State private var allVaccinatedSum: Int                        = 0
+    @State private var allUnvaccinatedSum: Int                      = 0
     var title: String
     var place: String
     var guardName: String
     var divisionOfVaccinated: Bool
     var startDate: Date
+    
+    // Data to save for the charts
+    @State private var allEntriesDate: [Date]                       = []
+    @State private var vaccinatedEntriesDate: [Date]                = []
+    @State private var unvaccinatedEntriesDate: [Date]              = []
     
     var body: some View {
         VStack {
@@ -56,18 +61,24 @@ struct SessionView: View {
         .padding()
         .navigationBarBackButtonHidden(true)
         .alert(isPresented: $showingAlert, content: createAlert)
-        .onAppear { self.buttonSize = divisionOfVaccinated ? 50 : 80 }
+        .onAppear(perform: startSession)
         .onDisappear(perform: locationManager.stop)
     }
 }
 
 // MARK: - Methods
-extension SessionView {
+private extension SessionView {
+    /// This method adjusts the size of the buttons and starts updating the location.
+    func startSession() {
+        self.buttonSize = divisionOfVaccinated ? 50 : 80
+        self.locationManager.start()
+    }
+    
     /// This method saves the duty.
     func saveDuty() {
-        guard let lastLocation = locationManager.lastLocation?.coordinate else { return }
-        let latitude = lastLocation.latitude
-        let longitude = lastLocation.longitude
+        let lastLocation = locationManager.lastLocation?.coordinate
+        let latitude = lastLocation?.latitude
+        let longitude = lastLocation?.longitude
         
         let duty = DutyViewModel(title: self.title,
                                  place: self.place,
@@ -81,39 +92,90 @@ extension SessionView {
                                  allEntriesDate: self.allEntriesDate,
                                  vaccinatedEntriesDate: self.vaccinatedEntriesDate,
                                  unvaccinatedEntriesDate: self.unvaccinatedEntriesDate,
-                                 latitude: String(latitude),
-                                 longitude: String(longitude))
+                                 latitude: latitude.map({ String($0) }),
+                                 longitude: longitude.map({ String($0) }))
         
         DutyViewModel.saveDuty(duty)
         self.presentationMode.wrappedValue.dismiss()
     }
     
-    /// This method converts the localization degrees (Double) to the String.
-    /// - Parameter degrees: A latitude or longitude value specified in degrees.
-    /// - Returns: String of a latitude or longitude.
-    func mapLocalization(localization degrees: CLLocationDegrees) -> String {
-        return String(degrees)
+    /// This method causes haptic vibrations and then increments the counter(s) by 1.
+    /// - Parameter type: Counter type that will be increased:
+    ///
+    ///   - .none:              There is no division into vaccinated,
+    ///                         increase only the all people counter
+    ///
+    ///   - .vaccinated:        There is a division into vaccinated,
+    ///                         increase the all people and vaccinated counter
+    ///
+    ///   - .unvaccinated:      There is a division into vaccinated,
+    ///                         increase the all people and unvaccinated counter
+    ///
+    func add(type: DivisionAction) {
+        makeVibration(style: .heavy)
+        
+        self.allEntriesDate.append(Date())
+        self.allPeopleCounter += 1
+        self.allPeopleSum += 1
+        
+        switch type {
+            case .vaccinated:
+                self.vaccinatedEntriesDate.append(Date())
+                self.vaccinatedCounter += 1
+                self.allVaccinatedSum += 1
+            case .unvaccinated:
+                self.unvaccinatedEntriesDate.append(Date())
+                self.unvaccinatedCounter += 1
+                self.allUnvaccinatedSum += 1
+            case .none:
+                print("Incremented counter by 1")
+        }
     }
     
-    /// This method causes haptic vibrations and then increments the counter by 1.
-    /// - Parameter counter: Counter of people entering to the place - according to the division of vaccinated.
-    func add(to counter: inout Int) {
-        let hapticPlus = UIImpactFeedbackGenerator(style: .heavy)
-        hapticPlus.impactOccurred()
-        counter += 1
+    /// This method causes haptic vibrations and then decrements the counter(s) by 1.
+    /// - Parameter type: Counter type that will be decreased:
+    ///
+    ///   - .none:              There is no division into vaccinated,
+    ///                         decrease only the all people counter
+    ///
+    ///   - .vaccinated:        There is a division into vaccinated,
+    ///                         decrease the all people and vaccinated counter
+    ///
+    ///   - .unvaccinated:      There is a division into vaccinated,
+    ///                         decrease the all people and unvaccinated counter
+    ///
+    func subtract(type: DivisionAction) {
+        makeVibration(style: .medium)
+        
+        // The condition that keeps:
+        //  - A counter type (eg if it is equal to .none, execute action)
+        //  - If the counters are equal to 0 - thanks to this they will not be the negative number.
+        //  - When the counter enters 0, it will not subtract the person from all people
+        //    (prevents the situation where the subtract button is tapped and instead of,
+        //    for example, 100/100/0, the 95/100/0 is displayed).
+        if (type == .vaccinated && vaccinatedCounter != 0) || (type == .unvaccinated && unvaccinatedCounter != 0) || type == .none {
+            self.allPeopleCounter -= self.allPeopleCounter > 0 ? 1 : 0
+            
+            switch type {
+                case .vaccinated:
+                    self.vaccinatedCounter -= 1
+                case .unvaccinated:
+                    self.unvaccinatedCounter -= 1
+                case .none:
+                    print("Decremented counter by 1")
+            }
+        }
     }
     
-    /// This method causes haptic vibrations and then decrements the counter by 1.
-    /// - Parameter counter: Counter of people entering to the place - according to the division of vaccinated.
-    func subtract(from counter: inout Int) {
-        let hapticMinus = UIImpactFeedbackGenerator(style: .medium)
-        hapticMinus.impactOccurred()
-        counter -= counter > 0 ? 1 : 0
+    /// This method is used to generate the vibration of the device.
+    func makeVibration(style: UIImpactFeedbackGenerator.FeedbackStyle) {
+        let haptic = UIImpactFeedbackGenerator(style: style)
+        haptic.impactOccurred()
     }
 }
 
 // MARK: - Views
-extension SessionView {
+private extension SessionView {
     /// This method creates the confirmation alert.
     /// - Returns: Confirmation Alert
     func createAlert() -> Alert {
@@ -123,9 +185,43 @@ extension SessionView {
               secondaryButton: .cancel(Text(LocalizedStrings.goBack)))
     }
     
-    // A View which is shown when the user disabled the division of vaccinated.
+    /// This method creates a section with incrementation and decrementation buttons.
+    /// - Parameters:
+    ///   - title: Section title - displayed when there is a division into vaccinated,
+    ///            by default set to empty string.
+    ///   - decrementAction: Action performed after tapping the button with the plus symbol.
+    ///   - incrementAction: Action performed after tapping the button with the minus symbol.
+    /// - Returns: A section containing 2 buttons (plus and minus) and the title between them.
+    @ViewBuilder func createOperationSection(title: String = "", decrementAction: @escaping () -> Void, incrementAction: @escaping () -> Void) -> some View {
+        HStack {
+            // Minus button
+            Button(action: decrementAction) {
+                Image(systemName: "minus")
+                    .operationButtonStyle(size: buttonSize, color: .red)
+            }
+            
+            Spacer()
+            
+            // Section title
+            Text(title)
+                .font(.title)
+                .bold()
+            
+            Spacer()
+            
+            // Plus button
+            Button(action: incrementAction) {
+                Image(systemName: "plus")
+                    .operationButtonStyle(size: buttonSize, color: .green)
+            }
+        }
+        .padding(.vertical)
+        .font(.largeTitle)
+    }
+    
+    // A View which is shown when the user disabled the division into vaccinated.
     @ViewBuilder var viewWithoutDivision: some View {
-        // Counter
+        // All People Counter
         Text(String(allPeopleCounter))
             .font(.system(size: 90, weight: .bold, design: .default))
         
@@ -134,46 +230,34 @@ extension SessionView {
             .offset(y: -10)
         
         // Increment and decrement buttons
-        HStack {
-            // Minus button
-            Button(action: { subtract(from: &allPeopleCounter) }) {
-                Image(systemName: "minus")
-                    .operationButtonStyle(size: buttonSize, color: .red)
-            }
-            
-            Spacer()
-            
-            // Plus button
-            Button(action: {
-                add(to: &allPeopleCounter)
-                self.allPeopleSum += 1
-                allEntriesDate.append(Date())
-            }) {
-                Image(systemName: "plus")
-                    .operationButtonStyle(size: buttonSize, color: .green)
-            }
-        }
-        .font(.largeTitle)
-        .padding(.vertical)
+        createOperationSection(decrementAction: { subtract(type: .none) },
+                               incrementAction: { add(type: .none) })
     }
     
-    // A View which is shown when the user enabled the division of vaccinated.
+    // A View which is shown when the user enabled the division into vaccinated.
     @ViewBuilder var viewWithDivision: some View {
+        // Counters
+        dividedCounters
+        
+        // --- Increment and decrement buttons ---
+        // Vaccinated Section
+        createOperationSection(title: LocalizedStrings.vaccinated,
+                               decrementAction: { subtract(type: .vaccinated) },
+                               incrementAction: { add(type: .vaccinated) })
+        
+        // Unvaccinated Section
+        createOperationSection(title: LocalizedStrings.unvaccinated,
+                               decrementAction: { subtract(type: .unvaccinated) },
+                               incrementAction: { add(type: .unvaccinated) })
+    }
+    
+    // A counter displayed when the user chose a division into vaccinated.
+    @ViewBuilder var dividedCounters: some View {
         HStack {
             // All People Counter
-            VStack(spacing: 20) {
-                Image(systemName: "person")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .font(.system(size: 100, weight: .ultraLight, design: .default))
-                    .frame(height: 50)
-                    .offset(y: 2)
-                
-                Text(String(allPeopleCounter))
-                    .bold()
-                    .foregroundColor(.blue)
-                    .offset(y: 5)
-            }
+            createDivisionCounterPart(image: "person",
+                                      counter: allPeopleCounter,
+                                      color: .blue)
             
             Spacer()
             
@@ -183,22 +267,9 @@ extension SessionView {
             Spacer()
             
             // Vaccinated Counter
-            VStack(spacing: 20) {
-                if colorScheme == .dark {
-                    Image("vaccine_positive")
-                        .resizable()
-                        .frame(width: 60, height: 60)
-                        .colorInvert()
-                } else {
-                    Image("vaccine_positive")
-                        .resizable()
-                        .frame(width: 60, height: 60)
-                }
-                
-                Text(String(vaccinatedCounter))
-                    .bold()
-                    .foregroundColor(.green)
-            }
+            createDivisionCounterPart(image: "vaccine_positive",
+                                      counter: vaccinatedCounter,
+                                      color: .green)
             
             Spacer()
             
@@ -208,101 +279,36 @@ extension SessionView {
             Spacer()
             
             // Unvaccinated Counter
-            VStack(spacing: 20) {
-                if colorScheme == .dark {
-                    Image("vaccine_negative")
-                        .resizable()
-                        .frame(width: 60, height: 60)
-                        .colorInvert()
-                } else {
-                    Image("vaccine_negative")
-                        .resizable()
-                        .frame(width: 60, height: 60)
-                }
-                
-                Text(String(unvaccinatedCounter))
-                    .bold()
-                    .foregroundColor(.red)
-            }
+            createDivisionCounterPart(image: "vaccine_negative",
+                                      counter: unvaccinatedCounter,
+                                      color: .red)
         }
         .font(.title)
         .padding(.horizontal)
-        
-        // Increment and decrement buttons
-        // MARK: - Vaccinated
-        HStack {
-            // Minus button
-            Button(action: {
-                if vaccinatedCounter != 0 { subtract(from: &allPeopleCounter) }
-                subtract(from: &vaccinatedCounter)
-            }, label: {
-                Image(systemName: "minus")
-                    .operationButtonStyle(size: buttonSize, color: .red)
-            })
+    }
+    
+    /// Creates a part of the counter, displayed when division into vaccinated and unvaccinated is enabled.
+    /// - Parameters:
+    ///   - name: A photo name from Assets.xcassets
+    ///   - counter: Counter converted into a string, displays information about
+    ///              how many people from a given division entered
+    ///   - color: The color of the counter:
+    ///
+    ///     - blue:     all people
+    ///     - green:    vaccinated people
+    ///     - red:      unvaccinated people
+    ///
+    /// - Returns: A part of the counter with information about how many people from a given division entered
+    @ViewBuilder func createDivisionCounterPart(image name: String, counter: Int, color: Color) -> some View {
+        VStack(spacing: 20) {
+            Image(name)
+                .resizable()
+                .frame(width: 60, height: 60)
+                .colorInvertInDarkMode()
             
-            Spacer()
-            
-            Text(LocalizedStrings.vaccinated)
-                .font(.title)
+            Text(String(counter))
                 .bold()
-            
-            Spacer()
-            
-            // Plus button
-            Button(action: {
-                add(to: &allPeopleCounter)
-                add(to: &vaccinatedCounter)
-                
-                self.allPeopleSum += 1
-                self.allVaccinatedSum += 1
-                
-                let date = Date()
-                allEntriesDate.append(date)
-                vaccinatedEntriesDate.append(date)
-            }, label: {
-                Image(systemName: "plus")
-                    .operationButtonStyle(size: buttonSize, color: .green)
-            })
+                .foregroundColor(color)
         }
-        .padding(.vertical)
-        .font(.largeTitle)
-        
-        // MARK: - Unvaccinated
-        HStack {
-            // Minus button
-            Button(action: {
-                if unvaccinatedCounter != 0 { subtract(from: &allPeopleCounter) }
-                subtract(from: &unvaccinatedCounter)
-            }, label: {
-                Image(systemName: "minus")
-                    .operationButtonStyle(size: buttonSize, color: .red)
-            })
-            
-            Spacer()
-            
-            Text(LocalizedStrings.unvaccinated)
-                .font(.title)
-                .bold()
-            
-            Spacer()
-            
-            // Plus button
-            Button(action: {
-                add(to: &allPeopleCounter)
-                add(to: &unvaccinatedCounter)
-                
-                self.allPeopleSum += 1
-                self.allUnvaccinatedSum += 1
-                
-                let date = Date()
-                allEntriesDate.append(date)
-                unvaccinatedEntriesDate.append(date)
-            }, label: {
-                Image(systemName: "plus")
-                    .operationButtonStyle(size: buttonSize, color: .green)
-            })
-        }
-        .padding(.vertical)
-        .font(.largeTitle)
     }
 }

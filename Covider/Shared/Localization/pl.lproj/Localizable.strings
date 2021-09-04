@@ -1,10 +1,9 @@
 /* 
-  Localizable.strings
-  Covider
-
-  Created by Jakub "GPH4PPY" Dąbrowski on 22/08/2021.
-  
-*/
+ Localizable.strings
+ Covider
+ 
+ Created by Jakub "GPH4PPY" Dąbrowski on 22/08/2021.
+ */
 
 // MARK: - Welcome View
 "welcome_to_covider" = "Witaj w Covider";

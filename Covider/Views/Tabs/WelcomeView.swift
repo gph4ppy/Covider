@@ -11,7 +11,7 @@ struct WelcomeView: View {
     @AppStorage("isFirstTime") private var isFirstTime: Bool = true
     
     var body: some View {
-        // I use this array as computed property, because on a physical device,
+        // I declared this array inside the body, because on a physical device,
         // when I assigned the content of the table in .onAppear,
         // it threw a fatalError that indexOutOfRange.
         let welcomeScreens: [WelcomeScreenModel] = {

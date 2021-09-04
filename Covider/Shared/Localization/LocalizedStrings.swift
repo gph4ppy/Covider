@@ -29,7 +29,7 @@ struct LocalizedStrings {
     public static let duties = NSLocalizedString("duties", comment: "")
     public static let newDuty = NSLocalizedString("new_duty", comment: "")
     public static let search = NSLocalizedString("search", comment: "")
-
+    
     // MARK: - Session View
     public static let endSession = NSLocalizedString("end_session", comment: "")
     public static let confirm = NSLocalizedString("confirm", comment: "")
@@ -44,7 +44,7 @@ struct LocalizedStrings {
     public static let notificationPermissionDescription = NSLocalizedString("notification_permission_description", comment: "")
     public static let locationPermissionTitle = NSLocalizedString("location_permission_title", comment: "")
     public static let locationPermissionDescription = NSLocalizedString("location_permission_description", comment: "")
-
+    
     // MARK: - Detail View
     public static let allPeople = NSLocalizedString("all_people", comment: "")
     public static let guardString = NSLocalizedString("guard", comment: "")

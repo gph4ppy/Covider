@@ -18,7 +18,7 @@ struct StopWatchView: View {
     private var hours: Int                                  { progressTime / 3600 }
     private var minutes: Int                                { (progressTime % 3600) / 60 }
     private var seconds: Int                                { progressTime % 60 }
-
+    
     var body: some View {
         HStack(spacing: 2) {
             StopWatchUnitView(timeUnit: hours)

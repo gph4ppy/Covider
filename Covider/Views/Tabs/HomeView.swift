@@ -21,13 +21,33 @@ struct HomeView: View {
     
     var body: some View {
         ZStack {
+            /*  MARK: iOS 15.0 BETA 8 (19A5340a) - Toolbar Bug
+             *  ---------------------------------------------
+             *  After switching from WelcomeView() - by clicking the button - to this view, by using
+             *  .fullScreenCover(item: Binding<Identifiable?>, content: (Identifiable) -> View),
+             *  at the first start of the app, the toolbar does not display.
+             *  On the iOS 14.5 and Xcode 12.5.1 simulator (12E507), everything works correctly.
+             *
+             *  Placing the .navigationViewStyle(StackNavigationViewStyle()) in the middle of NavigationView,
+             *  right after .toolbar(content: createToolbar), turned out to be a solution.
+             *  Unfortunately, after starting DutySetupAlert(), the toolbar moved up (y offset).
+             *  After moving it after NavigationView, it only worked below iOS 15.0.
+             *
+             *  On iPad 15.0 it works as I described above. Unfortunately, a style modifier after
+             *  the NavigationView is needed for correct work on the iPad.
+             *
+             *  This and the fact that iOS 15.0 has not been published resulted in inserting
+             *  the style after the NavigationView.
+             *
+             *  Moreover, this is the correct use of this modifier.
+             */
             NavigationView {
                 listView
                     .navigationBarTitle(LocalizedStrings.duties)
                     .toolbar(content: createToolbar)
-                    .navigationViewStyle(StackNavigationViewStyle())
                     .add(searchBar)
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .blur(radius: showingSetupForm ? 3 : 0)
             .overlay(showingSetupForm ? overlay : nil)
             
@@ -41,6 +61,23 @@ struct HomeView: View {
 
 // MARK: - Methods
 private extension HomeView {
+    /// This method filters an array with duties using the search text, entered in Search Bar.
+    /// - Parameter duty: Fetched object, stores data about the duty.
+    /// - Returns: A logical value indicates whether a given duty contains the given text.
+    ///            If so, it is displayed in HomeView.
+    func filterDutiesArray(_ duty: Duty) -> Bool {
+        let dateFormatter = DateFormatter()
+        let startDate = dateFormatter.string(from: duty.startDate)
+        let endDate = dateFormatter.string(from: duty.endDate)
+        
+        return searchBar.text.isEmpty ||
+               duty.title.contains(searchBar.text) ||
+               duty.description.contains(searchBar.text) ||
+               duty.guardName.contains(searchBar.text) ||
+               startDate.contains(searchBar.text) ||
+               endDate.contains(searchBar.text)
+    }
+    
     /// This method removes selected duty from the context.
     /// - Parameter offsets: A set of indexes representing elements in the duties array.
     func removeDuty(at offsets: IndexSet) {
@@ -49,22 +86,6 @@ private extension HomeView {
             viewContext.delete(duty)
             PersistenceController.shared.saveContext()
         }
-    }
-    
-    /// This method filters an array with duties using the search text, entered in Search Bar.
-    /// - Parameter duty: Fetched object, stores data about the duty.
-    /// - Returns: A logical value indicates whether a given duty contains the given text. If so, it is displayed in HomeView.
-    func filterDutiesArray(_ duty: Duty) -> Bool {
-        let dateFormatter = DateFormatter()
-        let startDate = dateFormatter.string(from: duty.startDate)
-        let endDate = dateFormatter.string(from: duty.endDate)
-        
-        return searchBar.text.isEmpty ||
-            duty.title.contains(searchBar.text) ||
-            duty.description.contains(searchBar.text) ||
-            duty.guardName.contains(searchBar.text) ||
-            startDate.contains(searchBar.text) ||
-            endDate.contains(searchBar.text)
     }
 }
 
