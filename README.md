@@ -1,6 +1,4 @@
-<p align="center">
- [![Logo](https://user-images.githubusercontent.com/41966757/132109094-1572addc-201d-41f9-978b-ee5095b0f446.png)
-</p>
+![Logo](https://user-images.githubusercontent.com/41966757/132109094-1572addc-201d-41f9-978b-ee5095b0f446.png)
 
 # Covider
 ![Status](https://img.shields.io/static/v1?label=status&message=complete&color=brightgreen) [![Current Version](https://img.shields.io/badge/version-1.0-green.svg)](https://github.com/gph4ppy/covider) [![GitHub Stars](https://img.shields.io/github/stars/gph4ppy/covider.svg)](https://github.com/gph4ppy/Covider/stargazers) [![GitHub Issues](https://img.shields.io/github/issues/gph4ppy/covider.svg)](https://github.com/gph4ppy/covider/issues)
