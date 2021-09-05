@@ -1,11 +1,11 @@
-<p align="center">
-  <img alt="Logo" src="https://user-images.githubusercontent.com/41966757/132109094-1572addc-201d-41f9-978b-ee5095b0f446.png" width="20%" height="20%"/>
-</p>
-
 # Covider
 ![Status](https://img.shields.io/static/v1?label=status&message=complete&color=brightgreen) [![Current Version](https://img.shields.io/badge/version-1.0-green.svg)](https://github.com/gph4ppy/covider) [![GitHub Stars](https://img.shields.io/github/stars/gph4ppy/covider.svg)](https://github.com/gph4ppy/Covider/stargazers) [![GitHub Issues](https://img.shields.io/github/issues/gph4ppy/covider.svg)](https://github.com/gph4ppy/covider/issues)
 
 > A helpful counting app for security guards, created with SwiftUI.
+
+<p align="center">
+  <img alt="Logo" src="https://user-images.githubusercontent.com/41966757/132109094-1572addc-201d-41f9-978b-ee5095b0f446.png" width="20%" height="20%"/>
+</p>
 
 ## Table of Contents
 * [Introduction](#introduction)
@@ -15,8 +15,6 @@
 * [Usage](#usage)
 * [Project Status](#project-status)
 * [Contact](#contact)
-
-<!--- [Download](#download) << below screnshots --->
 
 ## Introduction
 We are currently going through a difficult period of the pandemic. For our safety, many restrictions have been applied - for example, the limit of people who can enter the event (which is usually divided into vaccinated and unvaccinated) or to the store.
@@ -44,14 +42,9 @@ Covider is an iOS app that helps security guards count people. Thanks to it, the
 | **Divided Session**    | **Normal Session**     |
 | ![Divided Session](https://user-images.githubusercontent.com/41966757/132109032-5408305a-c867-478b-be02-840c1c100773.png)  |  ![Normal Session](https://user-images.githubusercontent.com/41966757/132109041-e470b9d7-eb90-41a3-a7b3-34d746bb8236.png)  |
 
-<!---- TO DO
-## Download
-Covider is available for free on the AppStore - you can try it out yourself. To download it, click on the button below.
-
+## Usage
 <p align="center">
-  <a href="">
-    <img alt="Download on the App Store" title="App Store" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" width="200">
-  </a>
+  <img src="https://user-images.githubusercontent.com/41966757/132108840-4d526062-1626-4508-8fc6-ad45d8435fea.gif" alt="Usage of the application" width="35%" height="35%"/>
 </p>
 
 **Requirements:**
@@ -59,15 +52,9 @@ Covider is available for free on the AppStore - you can try it out yourself. To 
 - iPad - _Requires iPadOS 14.0 or later._
 - iPod touch - _Requires iOS 14.0 or later._
 - Mac - _Requires macOS 11.0 or later and a Mac with Apple M1 chip._
------->
-
-## Usage
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/41966757/132108840-4d526062-1626-4508-8fc6-ad45d8435fea.gif" alt="Usage of the application" width="25%" height="25%"/>
-</p>
 
 ## Project Status
-Project is _complete_. However, I am going to make a version for watchOS in the future.
+Project is _complete_. The project will not be further developed because services and information related to COVID-19 are considered to be part of the healthcare industry. 
 
 ## Contact
 Feel free to contact me at:
