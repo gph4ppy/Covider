@@ -3,10 +3,6 @@
 
 > A helpful counting app for security guards, created with SwiftUI.
 
-<p align="center">
-  <img alt="Logo" src="https://user-images.githubusercontent.com/41966757/132109094-1572addc-201d-41f9-978b-ee5095b0f446.png" width="20%" height="20%"/>
-</p>
-
 ## Table of Contents
 * [Introduction](#introduction)
 * [Technologies](#technologies)
