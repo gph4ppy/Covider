@@ -50,7 +50,7 @@ Covider is an iOS app that helps security guards count people. Thanks to it, the
 - Mac - _Requires macOS 11.0 or later and a Mac with Apple M1 chip._
 
 ## Project Status
-Project is _complete_. The project will not be further developed because services and information related to COVID-19 are considered to be part of the healthcare industry. 
+Project is _complete_ and will not be further developed, because services and information related to COVID-19 are considered to be part of the healthcare industry. 
 
 ## Contact
 Feel free to contact me at:
